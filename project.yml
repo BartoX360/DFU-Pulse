@@ -1,0 +1,69 @@
+name: DFUPulse
+options:
+  bundleIdPrefix: fr.bartox
+  deploymentTarget:
+    macOS: "26.0"
+  developmentLanguage: en
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    ARCHS: arm64
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_IDENTITY: "-"
+    CODE_SIGN_STYLE: Manual
+    DEVELOPMENT_TEAM: ""
+    ENABLE_HARDENED_RUNTIME: NO
+targets:
+  DFUPulse:
+    type: application
+    platform: macOS
+    sources:
+      - DFUPulse
+    dependencies:
+      - target: macvdmtool
+        embed: true
+        copy:
+          destination: executables
+    settings:
+      base:
+        PRODUCT_NAME: DFU Pulse
+        PRODUCT_BUNDLE_IDENTIFIER: fr.bartox.DFUPulse
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: DFU Pulse
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
+        INFOPLIST_KEY_NSHumanReadableCopyright: "Free software under GPL-3.0"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+        SWIFT_EMIT_LOC_STRINGS: YES
+  macvdmtool:
+    type: tool
+    platform: macOS
+    sources:
+      - path: Vendor/macvdmtool
+        includes: ["main.cpp", "*.h"]
+    settings:
+      base:
+        CLANG_CXX_LANGUAGE_STANDARD: c++14
+        OTHER_LDFLAGS: ["-framework", "CoreFoundation", "-framework", "IOKit"]
+        GCC_WARN_INHIBIT_ALL_WARNINGS: YES
+  DFUPulseTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - DFUPulseTests
+    dependencies:
+      - target: DFUPulse
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/DFU Pulse.app/Contents/MacOS/DFU Pulse"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+schemes:
+  DFUPulse:
+    build:
+      targets:
+        DFUPulse: all
+    test:
+      targets:
+        - DFUPulseTests

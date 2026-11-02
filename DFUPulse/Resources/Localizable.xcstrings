@@ -1,0 +1,946 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%lld files · %@": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld fichiers · %@"
+          }
+        }
+      }
+    },
+    "14-inch M4 or M5 (not Pro or Max)": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "14 pouces M4 ou M5 (hors Pro et Max)"
+          }
+        }
+      }
+    },
+    "Action": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Action"
+          }
+        }
+      }
+    },
+    "After about 10 seconds, release the three keys and keep holding power for up to 10 more seconds, until the Mac appears here.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Après environ 10 secondes, relâchez les trois touches en gardant le bouton d’alimentation enfoncé jusqu’à 10 secondes de plus, jusqu’à ce que le Mac apparaisse ici."
+          }
+        }
+      }
+    },
+    "All data on %@ will be permanently deleted.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toutes les données de %@ seront définitivement supprimées."
+          }
+        }
+      }
+    },
+    "All models": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tous les modèles"
+          }
+        }
+      }
+    },
+    "Apple Configurator is required": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Configurator est nécessaire"
+          }
+        }
+      }
+    },
+    "Apple silicon, 2025 or later": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple silicon, 2025 ou plus récent"
+          }
+        }
+      }
+    },
+    "Apple's reference table": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tableau de référence d’Apple"
+          }
+        }
+      }
+    },
+    "Automatic entry needs both Macs on Apple silicon, joined by their DFU ports, and an administrator password.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le passage automatique demande deux Mac Apple silicon reliés par leurs ports DFU, et un mot de passe administrateur."
+          }
+        }
+      }
+    },
+    "Back": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retour"
+          }
+        }
+      }
+    },
+    "By hand, any USB-C port works on this Mac. Automatic entry needs its DFU port too.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À la main, n’importe quel port USB-C de ce Mac convient. Le passage automatique demande aussi son port DFU."
+          }
+        }
+      }
+    },
+    "Cable and connection": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Câble et branchement"
+          }
+        }
+      }
+    },
+    "Cancelled.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annulé."
+          }
+        }
+      }
+    },
+    "Change folder": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changer de dossier"
+          }
+        }
+      }
+    },
+    "Checksum mismatch: the file was deleted.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Somme de contrôle incorrecte : le fichier a été supprimé."
+          }
+        }
+      }
+    },
+    "Connect the two Macs with a USB-C cable that carries data, then put the other Mac into DFU.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reliez les deux Mac avec un câble USB-C qui transmet les données, puis mettez l’autre Mac en DFU."
+          }
+        }
+      }
+    },
+    "Connected": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connecté"
+          }
+        }
+      }
+    },
+    "Corrupted": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corrompu"
+          }
+        }
+      }
+    },
+    "DFU Pulse": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DFU Pulse"
+          }
+        }
+      }
+    },
+    "DFU Pulse relies on Apple's free tool to talk to the Mac being flashed.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DFU Pulse s’appuie sur cet outil gratuit d’Apple pour dialoguer avec le Mac à flasher."
+          }
+        }
+      }
+    },
+    "Discard": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abandonner"
+          }
+        }
+      }
+    },
+    "Done. The Mac will restart on its own.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminé. Le Mac va redémarrer tout seul."
+          }
+        }
+      }
+    },
+    "Download": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Télécharger"
+          }
+        }
+      }
+    },
+    "Drop to import": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déposez pour importer"
+          }
+        }
+      }
+    },
+    "Earlier Apple silicon models": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modèles Apple silicon plus anciens"
+          }
+        }
+      }
+    },
+    "Enter DFU automatically": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passer en DFU automatiquement"
+          }
+        }
+      }
+    },
+    "Enter DFU by hand": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passer en DFU à la main"
+          }
+        }
+      }
+    },
+    "Erase and restore": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effacer et restaurer"
+          }
+        }
+      }
+    },
+    "Erase this Mac?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effacer ce Mac ?"
+          }
+        }
+      }
+    },
+    "Flash": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flasher"
+          }
+        }
+      }
+    },
+    "Flash a Mac": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flasher un Mac"
+          }
+        }
+      }
+    },
+    "Flashing failed (code %d).": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec du flash (code %d)."
+          }
+        }
+      }
+    },
+    "Flashing in progress": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flash en cours"
+          }
+        }
+      }
+    },
+    "Get it on the Mac App Store": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’obtenir sur le Mac App Store"
+          }
+        }
+      }
+    },
+    "Hold the power button for up to 10 seconds until the Mac turns off.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maintenez le bouton d’alimentation jusqu’à 10 secondes, jusqu’à ce que le Mac s’éteigne."
+          }
+        }
+      }
+    },
+    "If this Mac asks to allow the accessory, click Allow.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si ce Mac demande d’autoriser l’accessoire, cliquez sur Autoriser."
+          }
+        }
+      }
+    },
+    "Import": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer"
+          }
+        }
+      }
+    },
+    "In library": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans la bibliothèque"
+          }
+        }
+      }
+    },
+    "Intact": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intact"
+          }
+        }
+      }
+    },
+    "Keep both Macs on power and this Mac awake.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gardez les deux Mac sur secteur et ce Mac réveillé."
+          }
+        }
+      }
+    },
+    "Keep both Macs powered and connected.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gardez les deux Mac alimentés et reliés."
+          }
+        }
+      }
+    },
+    "Keep holding it while you plug the power back in, for up to 10 seconds, until the Mac appears here.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gardez-le enfoncé en rebranchant l’alimentation, jusqu’à 10 secondes, jusqu’à ce que le Mac apparaisse ici."
+          }
+        }
+      }
+    },
+    "Leftmost USB-C port, seen from the back": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Port USB-C le plus à gauche, vu de l’arrière"
+          }
+        }
+      }
+    },
+    "Leftmost USB-C port, seen from the left side": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Port USB-C le plus à gauche, vu du côté gauche"
+          }
+        }
+      }
+    },
+    "Library": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bibliothèque"
+          }
+        }
+      }
+    },
+    "Mac being flashed": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mac à flasher"
+          }
+        }
+      }
+    },
+    "Mac model": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modèle de Mac"
+          }
+        }
+      }
+    },
+    "Middle USB-C port, seen from the back": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Port USB-C du milieu, vu de l’arrière"
+          }
+        }
+      }
+    },
+    "Move to Trash": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placer dans la corbeille"
+          }
+        }
+      }
+    },
+    "Move to Trash?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Placer dans la corbeille ?"
+          }
+        }
+      }
+    },
+    "No IPSW yet. Download one below or drop files here.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun IPSW pour l’instant. Téléchargez-en un ci-dessous ou déposez des fichiers ici."
+          }
+        }
+      }
+    },
+    "No longer signed": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus signé"
+          }
+        }
+      }
+    },
+    "Not enough free disk space: %@ needed.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espace disque insuffisant : %@ nécessaires."
+          }
+        }
+      }
+    },
+    "On the front, the USB-C port closest to the power button": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À l’avant, le port USB-C le plus proche du bouton d’alimentation"
+          }
+        }
+      }
+    },
+    "On top, the USB-C port farthest from the power button": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sur le dessus, le port USB-C le plus éloigné du bouton d’alimentation"
+          }
+        }
+      }
+    },
+    "Only one USB-C port accepts DFU, and it depends on the Mac.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un seul port USB-C accepte le DFU, et il dépend du Mac."
+          }
+        }
+      }
+    },
+    "Open the port guide": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir le guide des ports"
+          }
+        }
+      }
+    },
+    "Other Apple silicon models": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autres modèles Apple silicon"
+          }
+        }
+      }
+    },
+    "Pause": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause"
+          }
+        }
+      }
+    },
+    "Plug the cable into the DFU port, with nothing else in the USB ports.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Branchez le câble sur le port DFU, sans rien d’autre sur les ports USB."
+          }
+        }
+      }
+    },
+    "Plug the cable into the DFU port. Leave only power connected otherwise, through MagSafe if the Mac has it.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Branchez le câble sur le port DFU. Ne laissez que l’alimentation branchée, en MagSafe si le Mac en a un."
+          }
+        }
+      }
+    },
+    "Plug the cable into the DFU port. Leave only power connected otherwise.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Branchez le câble sur le port DFU. Ne laissez que l’alimentation branchée."
+          }
+        }
+      }
+    },
+    "Port guide": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guide des ports"
+          }
+        }
+      }
+    },
+    "Press and release power, then immediately hold left Control, left Option, right Shift and power together for about 3 seconds, until the Mac appears here.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appuyez brièvement sur le bouton d’alimentation, puis maintenez aussitôt Contrôle gauche, Option gauche, Maj droite et le bouton d’alimentation pendant environ 3 secondes, jusqu’à ce que le Mac apparaisse ici."
+          }
+        }
+      }
+    },
+    "Press and release power, then immediately hold left Control, left Option, right Shift and power together.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appuyez brièvement sur le bouton d’alimentation, puis maintenez aussitôt Contrôle gauche, Option gauche, Maj droite et le bouton d’alimentation."
+          }
+        }
+      }
+    },
+    "Rack enclosure": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Format rack"
+          }
+        }
+      }
+    },
+    "Refused: this file is not hosted by Apple.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refusé : ce fichier n’est pas hébergé par Apple."
+          }
+        }
+      }
+    },
+    "Restore": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restaurer"
+          }
+        }
+      }
+    },
+    "Restoring erases everything on this Mac.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La restauration efface tout le contenu de ce Mac."
+          }
+        }
+      }
+    },
+    "Resume": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reprendre"
+          }
+        }
+      }
+    },
+    "Retry": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réessayer"
+          }
+        }
+      }
+    },
+    "Revive": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raviver"
+          }
+        }
+      }
+    },
+    "Revive or restore a Mac connected in DFU mode.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ravivez ou restaurez un Mac branché en mode DFU."
+          }
+        }
+      }
+    },
+    "Revive this Mac": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raviver ce Mac"
+          }
+        }
+      }
+    },
+    "Rightmost USB-C port, seen from the back": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Port USB-C le plus à droite, vu de l’arrière"
+          }
+        }
+      }
+    },
+    "Rightmost USB-C port, seen from the left side": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Port USB-C le plus à droite, vu du côté gauche"
+          }
+        }
+      }
+    },
+    "Show in Finder": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher dans le Finder"
+          }
+        }
+      }
+    },
+    "Stop": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrêter"
+          }
+        }
+      }
+    },
+    "Stop flashing?": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrêter le flash ?"
+          }
+        }
+      }
+    },
+    "T2 Macs take no macOS image here: Apple's tool picks the firmware, then macOS installs from Recovery.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les Mac T2 ne prennent pas d’image macOS ici : l’outil d’Apple choisit le firmware, puis macOS s’installe depuis la récupération."
+          }
+        }
+      }
+    },
+    "T2 chip": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puce T2"
+          }
+        }
+      }
+    },
+    "The IPSW files stored on this Mac.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les fichiers IPSW stockés sur ce Mac."
+          }
+        }
+      }
+    },
+    "The Mac may stay unusable until you flash it again.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le Mac risque de rester inutilisable jusqu’à un nouveau flash."
+          }
+        }
+      }
+    },
+    "The port diagram is schematic: the number of ports varies by model.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le schéma est indicatif : le nombre de ports varie selon le modèle."
+          }
+        }
+      }
+    },
+    "Tower enclosure": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Format tour"
+          }
+        }
+      }
+    },
+    "Unplug the Mac from power, then press and hold its power button.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Débranchez le Mac du secteur, puis maintenez son bouton d’alimentation."
+          }
+        }
+      }
+    },
+    "Updates the firmware and recoveryOS and keeps the Mac's data. Try this first.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Met à jour le firmware et recoveryOS en gardant les données du Mac. À essayer en premier."
+          }
+        }
+      }
+    },
+    "Use a USB-C cable that carries data and charging. Thunderbolt 3 cables are not supported.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utilisez un câble USB-C données et charge. Les câbles Thunderbolt 3 ne sont pas pris en charge."
+          }
+        }
+      }
+    },
+    "Verify": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vérifier"
+          }
+        }
+      }
+    },
+    "Verifying…": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vérification…"
+          }
+        }
+      }
+    },
+    "Waiting for a Mac in DFU mode": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En attente d’un Mac en mode DFU"
+          }
+        }
+      }
+    },
+    "macOS version": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version de macOS"
+          }
+        }
+      }
+    },
+    "macvdmtool is missing from the app.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macvdmtool est absent de l’app."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
