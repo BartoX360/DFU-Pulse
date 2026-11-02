@@ -15,8 +15,8 @@ enum AppSection: String, CaseIterable, Identifiable {
 
     var symbol: String {
         switch self {
-        case .flash: "bolt.fill"
-        case .library: "externaldrive.fill"
+        case .flash: "bolt"
+        case .library: "externaldrive"
         case .guide: "cable.connector"
         }
     }
@@ -31,24 +31,12 @@ struct ContentView: View {
                 Label(section.title, systemImage: section.symbol)
                     .tag(section)
             }
-            .safeAreaInset(edge: .top) {
-                HStack(spacing: 10) {
-                    Image("Logo").resizable().frame(width: 34, height: 34)
-                    Text(verbatim: "DFU Pulse").font(.title3.weight(.semibold))
-                    Spacer()
-                }
-                .padding(.horizontal, 16)
-                .padding(.bottom, 8)
-            }
-            .navigationSplitViewColumnWidth(min: 190, ideal: 210, max: 240)
+            .navigationSplitViewColumnWidth(min: 180, ideal: 200, max: 240)
         } detail: {
-            ZStack {
-                PulseBackground()
-                switch selection {
-                case .flash: FlashView(showGuide: { selection = .guide })
-                case .library: LibraryView()
-                case .guide: GuideView()
-                }
+            switch selection {
+            case .flash: FlashView(showGuide: { selection = .guide })
+            case .library: LibraryView()
+            case .guide: GuideView()
             }
         }
     }

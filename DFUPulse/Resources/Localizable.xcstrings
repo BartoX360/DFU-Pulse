@@ -1,6 +1,16 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "%lld Mac models": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld modèles de Mac"
+          }
+        }
+      }
+    },
     "%lld files · %@": {
       "localizations": {
         "fr": {
@@ -27,6 +37,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Action"
+          }
+        }
+      }
+    },
+    "Actions": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actions"
           }
         }
       }
@@ -61,6 +81,16 @@
         }
       }
     },
+    "Allow without password": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autoriser sans mot de passe"
+          }
+        }
+      }
+    },
     "Apple Configurator is required": {
       "localizations": {
         "fr": {
@@ -91,22 +121,92 @@
         }
       }
     },
-    "Automatic entry needs both Macs on Apple silicon, joined by their DFU ports, and an administrator password.": {
+    "Asks for a password": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le passage automatique demande deux Mac Apple silicon reliés par leurs ports DFU, et un mot de passe administrateur."
+            "value": "Demande un mot de passe"
           }
         }
       }
     },
-    "Back": {
+    "Asks for your administrator password once, then installs a copy of macvdmtool owned by root and a sudo rule that lets your account run only “macvdmtool dfu” without a password. Nothing runs in the background.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Retour"
+            "value": "Demande une seule fois votre mot de passe administrateur, puis installe une copie de macvdmtool appartenant à root et une règle sudo qui autorise votre compte à lancer uniquement « macvdmtool dfu » sans mot de passe. Rien ne tourne en arrière-plan."
+          }
+        }
+      }
+    },
+    "Automatic DFU entry": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passage DFU automatique"
+          }
+        }
+      }
+    },
+    "Automatic entry needs both Macs on Apple silicon, joined by their DFU ports, and an administrator password. You can skip the password in Settings.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le passage automatique demande deux Mac Apple silicon reliés par leurs ports DFU, et un mot de passe administrateur. Vous pouvez vous en passer dans les Réglages."
+          }
+        }
+      }
+    },
+    "Automatic entry needs both Macs on Apple silicon, joined by their DFU ports.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le passage automatique demande deux Mac Apple silicon reliés par leurs ports DFU."
+          }
+        }
+      }
+    },
+    "Available from Apple": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disponibles chez Apple"
+          }
+        }
+      }
+    },
+    "Back: the leftmost USB-C port, seen from behind.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À l’arrière : le port USB-C le plus à gauche, vu de dos."
+          }
+        }
+      }
+    },
+    "Back: the middle USB-C port, seen from behind.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À l’arrière : le port USB-C du milieu, vu de dos."
+          }
+        }
+      }
+    },
+    "Back: the rightmost USB-C port, seen from behind.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À l’arrière : le port USB-C le plus à droite, vu de dos."
           }
         }
       }
@@ -121,12 +221,12 @@
         }
       }
     },
-    "Cable and connection": {
+    "Cable": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Câble et branchement"
+            "value": "Câble"
           }
         }
       }
@@ -141,12 +241,12 @@
         }
       }
     },
-    "Change folder": {
+    "Change…": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Changer de dossier"
+            "value": "Modifier…"
           }
         }
       }
@@ -167,16 +267,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reliez les deux Mac avec un câble USB-C qui transmet les données, puis mettez l’autre Mac en DFU."
-          }
-        }
-      }
-    },
-    "Connected": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Connecté"
           }
         }
       }
@@ -211,12 +301,32 @@
         }
       }
     },
+    "DFU port": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Port DFU"
+          }
+        }
+      }
+    },
     "Discard": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Abandonner"
+          }
+        }
+      }
+    },
+    "Done": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminé"
           }
         }
       }
@@ -237,16 +347,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Télécharger"
-          }
-        }
-      }
-    },
-    "Drop to import": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Déposez pour importer"
           }
         }
       }
@@ -311,16 +411,6 @@
         }
       }
     },
-    "Flash a Mac": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Flasher un Mac"
-          }
-        }
-      }
-    },
     "Flashing failed (code %d).": {
       "localizations": {
         "fr": {
@@ -341,6 +431,16 @@
         }
       }
     },
+    "Front": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avant"
+          }
+        }
+      }
+    },
     "Get it on the Mac App Store": {
       "localizations": {
         "fr": {
@@ -351,12 +451,32 @@
         }
       }
     },
+    "Hinge": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Charnière"
+          }
+        }
+      }
+    },
     "Hold the power button for up to 10 seconds until the Mac turns off.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Maintenez le bouton d’alimentation jusqu’à 10 secondes, jusqu’à ce que le Mac s’éteigne."
+          }
+        }
+      }
+    },
+    "IPSW folder": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dossier des IPSW"
           }
         }
       }
@@ -401,12 +521,12 @@
         }
       }
     },
-    "Keep both Macs on power and this Mac awake.": {
+    "Intel with T2 chip": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gardez les deux Mac sur secteur et ce Mac réveillé."
+            "value": "Intel avec puce T2"
           }
         }
       }
@@ -431,22 +551,32 @@
         }
       }
     },
-    "Leftmost USB-C port, seen from the back": {
+    "Left": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Port USB-C le plus à gauche, vu de l’arrière"
+            "value": "Gauche"
           }
         }
       }
     },
-    "Leftmost USB-C port, seen from the left side": {
+    "Left side: the USB-C port closest to the front.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Port USB-C le plus à gauche, vu du côté gauche"
+            "value": "Côté gauche : le port USB-C le plus proche de l’avant."
+          }
+        }
+      }
+    },
+    "Left side: the USB-C port closest to the hinge.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Côté gauche : le port USB-C le plus proche de la charnière."
           }
         }
       }
@@ -461,32 +591,32 @@
         }
       }
     },
-    "Mac being flashed": {
+    "Log": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Journal"
+          }
+        }
+      }
+    },
+    "Mac": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mac"
+          }
+        }
+      }
+    },
+    "Mac to flash": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Mac à flasher"
-          }
-        }
-      }
-    },
-    "Mac model": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Modèle de Mac"
-          }
-        }
-      }
-    },
-    "Middle USB-C port, seen from the back": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Port USB-C du milieu, vu de l’arrière"
           }
         }
       }
@@ -511,6 +641,16 @@
         }
       }
     },
+    "Needs an update": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mise à jour nécessaire"
+          }
+        }
+      }
+    },
     "No IPSW yet. Download one below or drop files here.": {
       "localizations": {
         "fr": {
@@ -521,12 +661,32 @@
         }
       }
     },
-    "No longer signed": {
+    "No compatible version found.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Plus signé"
+            "value": "Aucune version compatible trouvée."
+          }
+        }
+      }
+    },
+    "No password needed": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sans mot de passe"
+          }
+        }
+      }
+    },
+    "Not downloaded yet": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas encore téléchargé"
           }
         }
       }
@@ -541,22 +701,42 @@
         }
       }
     },
-    "On the front, the USB-C port closest to the power button": {
+    "On the front, the USB-C port closest to the power button.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "À l’avant, le port USB-C le plus proche du bouton d’alimentation"
+            "value": "À l’avant, le port USB-C le plus proche du bouton d’alimentation."
           }
         }
       }
     },
-    "On top, the USB-C port farthest from the power button": {
+    "On this Mac": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sur le dessus, le port USB-C le plus éloigné du bouton d’alimentation"
+            "value": "Sur ce Mac"
+          }
+        }
+      }
+    },
+    "On top, the USB-C port farthest from the power button.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sur le dessus, le port USB-C le plus éloigné du bouton d’alimentation."
+          }
+        }
+      }
+    },
+    "One file per version, shared by every Apple silicon Mac it supports.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un seul fichier par version, commun à tous les Mac Apple silicon compatibles."
           }
         }
       }
@@ -567,16 +747,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Un seul port USB-C accepte le DFU, et il dépend du Mac."
-          }
-        }
-      }
-    },
-    "Open the port guide": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ouvrir le guide des ports"
           }
         }
       }
@@ -681,6 +851,16 @@
         }
       }
     },
+    "Remove": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retirer"
+          }
+        }
+      }
+    },
     "Restore": {
       "localizations": {
         "fr": {
@@ -731,42 +911,12 @@
         }
       }
     },
-    "Revive or restore a Mac connected in DFU mode.": {
+    "Right": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ravivez ou restaurez un Mac branché en mode DFU."
-          }
-        }
-      }
-    },
-    "Revive this Mac": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Raviver ce Mac"
-          }
-        }
-      }
-    },
-    "Rightmost USB-C port, seen from the back": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Port USB-C le plus à droite, vu de l’arrière"
-          }
-        }
-      }
-    },
-    "Rightmost USB-C port, seen from the left side": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Port USB-C le plus à droite, vu du côté gauche"
+            "value": "Droite"
           }
         }
       }
@@ -777,6 +927,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Afficher dans le Finder"
+          }
+        }
+      }
+    },
+    "Status": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "État"
           }
         }
       }
@@ -811,42 +971,12 @@
         }
       }
     },
-    "T2 chip": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Puce T2"
-          }
-        }
-      }
-    },
-    "The IPSW files stored on this Mac.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les fichiers IPSW stockés sur ce Mac."
-          }
-        }
-      }
-    },
     "The Mac may stay unusable until you flash it again.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Le Mac risque de rester inutilisable jusqu’à un nouveau flash."
-          }
-        }
-      }
-    },
-    "The port diagram is schematic: the number of ports varies by model.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le schéma est indicatif : le nombre de ports varie selon le modèle."
           }
         }
       }
@@ -867,6 +997,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Débranchez le Mac du secteur, puis maintenez son bouton d’alimentation."
+          }
+        }
+      }
+    },
+    "Unsupported account name.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nom de compte non pris en charge."
+          }
+        }
+      }
+    },
+    "Update": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mettre à jour"
           }
         }
       }
@@ -937,6 +1087,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "macvdmtool est absent de l’app."
+          }
+        }
+      }
+    },
+    "no longer signed by Apple": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plus signé par Apple"
           }
         }
       }

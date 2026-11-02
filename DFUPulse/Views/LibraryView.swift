@@ -1,37 +1,95 @@
 import AppKit
 import SwiftUI
-import UniformTypeIdentifiers
 
 struct LibraryView: View {
     @Environment(AppModel.self) private var model
-    @State private var catalogModel = AppModel.hostModel
     @State private var showImporter = false
     @State private var pendingTrash: LibraryItem?
     @State private var verifying: URL?
     @State private var results: [URL: Bool] = [:]
     @State private var errorMessage: String?
-    @State private var dropTargeted = false
+
+    /// Releases grouped by major version, newest first.
+    private var majors: [(String, [Firmware])] {
+        var groups: [(String, [Firmware])] = []
+        for release in model.catalog.releases {
+            if groups.last?.0 == release.major {
+                groups[groups.count - 1].1.append(release)
+            } else {
+                groups.append((release.major, [release]))
+            }
+        }
+        return groups
+    }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 18) {
-                PageHeader(title: "Library", subtitle: "The IPSW files stored on this Mac.")
-                filesCard
-                catalogCard
+        Form {
+            Section {
+                if model.library.items.isEmpty {
+                    Text("No IPSW yet. Download one below or drop files here.")
+                        .foregroundStyle(.secondary)
+                }
+                ForEach(model.library.items) { item in
+                    row(item)
+                }
+                if let errorMessage {
+                    Text(errorMessage).font(.callout).foregroundStyle(.orange)
+                }
+            } header: {
+                HStack {
+                    Text("On this Mac")
+                    Spacer()
+                    Text("\(model.library.items.count) files · \(model.library.totalSize.fileSize)")
+                        .foregroundStyle(.secondary)
+                }
             }
-            .padding(28)
-            .frame(maxWidth: 760)
-            .frame(maxWidth: .infinity)
+
+            if model.catalog.releases.isEmpty {
+                Section("Available from Apple") {
+                    if model.catalog.isLoading {
+                        ProgressView()
+                    } else {
+                        Text(model.catalog.failure ?? "")
+                        Button("Retry") { Task { await model.catalog.refresh() } }
+                    }
+                }
+            }
+            ForEach(Array(majors.enumerated()), id: \.element.0) { index, group in
+                Section {
+                    ForEach(group.1) { release in
+                        releaseRow(release)
+                    }
+                } header: {
+                    if index == 0 {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Available from Apple")
+                            Text("One file per version, shared by every Apple silicon Mac it supports.")
+                                .font(.callout).fontWeight(.regular).foregroundStyle(.secondary)
+                        }
+                        .padding(.bottom, 6)
+                    }
+                    Text(verbatim: "macOS \(group.0)")
+                }
+            }
+        }
+        .formStyle(.grouped)
+        .navigationTitle("Library")
+        .toolbar {
+            ToolbarItemGroup {
+                Button("Import", systemImage: "plus") { showImporter = true }
+                Button("Show in Finder", systemImage: "folder") {
+                    NSWorkspace.shared.activateFileViewerSelecting([model.library.folder])
+                }
+            }
         }
         .onAppear { model.library.refresh() }
-        .task(id: catalogModel) { await model.catalog.load(model: catalogModel) }
         .fileImporter(isPresented: $showImporter, allowedContentTypes: [.data], allowsMultipleSelection: true) { result in
             if case .success(let urls) = result { add(urls) }
         }
         .dropDestination(for: URL.self) { urls, _ in
             add(urls)
             return true
-        } isTargeted: { dropTargeted = $0 }
+        }
         .alert("Move to Trash?", isPresented: Binding(get: { pendingTrash != nil }, set: { if !$0 { pendingTrash = nil } }),
                presenting: pendingTrash) { item in
             Button("Move to Trash", role: .destructive) { trash(item) }
@@ -40,105 +98,54 @@ struct LibraryView: View {
         }
     }
 
-    private var filesCard: some View {
-        GlassCard {
-            HStack {
-                Text("\(model.library.items.count) files · \(model.library.totalSize.fileSize)")
-                    .font(.headline)
-                Spacer()
-                Button("Import", systemImage: "plus") { showImporter = true }
-                    .buttonStyle(.glass)
-                Button("Show in Finder", systemImage: "folder") {
-                    NSWorkspace.shared.activateFileViewerSelecting([model.library.folder])
-                }
-                .labelStyle(.iconOnly).buttonStyle(.glass)
-                Button("Change folder", systemImage: "folder.badge.gearshape") { chooseFolder() }
-                    .labelStyle(.iconOnly).buttonStyle(.glass)
-            }
-            if model.library.items.isEmpty {
-                Text(dropTargeted ? "Drop to import" : "No IPSW yet. Download one below or drop files here.")
-                    .foregroundStyle(.secondary)
-            }
-            ForEach(model.library.items) { item in
-                row(item)
-                if item.id != model.library.items.last?.id { Divider() }
-            }
-            if let errorMessage {
-                Text(errorMessage).font(.caption).foregroundStyle(.orange)
-            }
-        }
-    }
-
     private func row(_ item: LibraryItem) -> some View {
-        let firmware = item.build.flatMap(model.catalog.firmware(build:))
-        return HStack(spacing: 12) {
-            Image(systemName: "shippingbox.fill").foregroundStyle(.cyan)
-            VStack(alignment: .leading, spacing: 2) {
-                Text(verbatim: item.version.map { "macOS \($0)" } ?? item.name)
-                    .font(.headline).lineLimit(1).truncationMode(.middle)
-                Text(verbatim: [item.build, item.size.fileSize].compactMap(\.self).joined(separator: " · "))
-                    .font(.caption).foregroundStyle(.secondary)
+        let release = item.build.flatMap(model.catalog.firmware(build:))
+        return LabeledContent {
+            HStack(spacing: 10) {
+                if let result = results[item.url] {
+                    Text(result ? "Intact" : "Corrupted")
+                        .font(.callout).foregroundStyle(result ? .green : .red)
+                }
+                if verifying == item.url {
+                    ProgressView().controlSize(.small)
+                }
+                Menu("Actions", systemImage: "ellipsis.circle") {
+                    if let release {
+                        Button("Verify", systemImage: "checkmark.shield") { verify(item, release) }
+                    }
+                    Button("Show in Finder", systemImage: "folder") {
+                        NSWorkspace.shared.activateFileViewerSelecting([item.url])
+                    }
+                    Divider()
+                    Button("Move to Trash", systemImage: "trash", role: .destructive) { pendingTrash = item }
+                }
+                .labelStyle(.iconOnly)
+                .menuStyle(.button).buttonStyle(.borderless)
+                .menuIndicator(.hidden)
+                .fixedSize()
             }
-            Spacer()
-            if firmware?.signed == false { Badge(text: "No longer signed", tint: .orange) }
-            if let result = results[item.url] {
-                Badge(text: result ? "Intact" : "Corrupted", tint: result ? .green : .red)
-            }
-            if verifying == item.url {
-                ProgressView().controlSize(.small)
-            } else if let firmware {
-                Button("Verify", systemImage: "checkmark.shield") { verify(item, firmware) }
-                    .labelStyle(.iconOnly).buttonStyle(.glass)
-            }
-            Button("Show in Finder", systemImage: "magnifyingglass") {
-                NSWorkspace.shared.activateFileViewerSelecting([item.url])
-            }
-            .labelStyle(.iconOnly).buttonStyle(.glass)
-            Button("Move to Trash", systemImage: "trash") { pendingTrash = item }
-                .labelStyle(.iconOnly).buttonStyle(.glass)
+        } label: {
+            Text(verbatim: item.version.map { "macOS \($0)" } ?? item.name)
+            Text(verbatim: [item.build, item.size.fileSize].compactMap(\.self).joined(separator: " · ")
+                 + (release == nil && item.build != nil && !model.catalog.releases.isEmpty
+                    ? " · " + String(localized: "no longer signed by Apple") : ""))
         }
     }
 
-    private var catalogCard: some View {
-        GlassCard {
-            HStack {
-                Text("Download").font(.headline)
-                Spacer()
-                Picker("Mac model", selection: $catalogModel) {
-                    ForEach(modelChoices, id: \.self) { id in
-                        Text(verbatim: model.catalog.displayName(for: id)).tag(id)
-                    }
-                }
-                .frame(maxWidth: 340)
+    private func releaseRow(_ release: Firmware) -> some View {
+        LabeledContent {
+            if model.library.item(build: release.build) != nil {
+                Image(systemName: "checkmark.circle.fill").foregroundStyle(.green)
+                    .help("In library")
+            } else {
+                DownloadControl(firmware: release)
             }
-            let list = (model.catalog.firmwares[catalogModel] ?? []).filter(\.signed)
-            if let failure = model.catalog.failures[catalogModel] {
-                Text(failure).foregroundStyle(.orange)
-            } else if list.isEmpty {
-                ProgressView()
-            }
-            ForEach(list) { firmware in
-                HStack {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(verbatim: "macOS \(firmware.version)").font(.headline)
-                        Text(verbatim: [firmware.build, firmware.size?.fileSize].compactMap(\.self).joined(separator: " · "))
-                            .font(.caption).foregroundStyle(.secondary)
-                    }
-                    Spacer()
-                    if model.library.item(build: firmware.build) != nil {
-                        Badge(text: "In library", tint: .green)
-                    } else {
-                        DownloadControl(firmware: firmware)
-                    }
-                }
-            }
+        } label: {
+            Text(verbatim: "macOS \(release.version)")
+            Text(verbatim: [release.build, release.size?.fileSize].compactMap(\.self).joined(separator: " · ")
+                 + " · " + String(localized: "\(release.models.count) Mac models"))
         }
-    }
-
-    private var modelChoices: [String] {
-        var ids = Array(model.catalog.macNames.keys)
-        if !ids.contains(catalogModel) { ids.append(catalogModel) }
-        return ids.sorted { model.catalog.displayName(for: $0) < model.catalog.displayName(for: $1) }
+        .help(release.models.sorted().map(model.catalog.displayName(for:)).joined(separator: "\n"))
     }
 
     private func add(_ urls: [URL]) {
@@ -160,25 +167,15 @@ struct LibraryView: View {
         }
     }
 
-    private func verify(_ item: LibraryItem, _ firmware: Firmware) {
+    private func verify(_ item: LibraryItem, _ release: Firmware) {
         verifying = item.url
         Task {
             defer { verifying = nil }
             do {
-                results[item.url] = try await IPSWVerifier.verify(item.url, firmware: firmware) { _ in }
+                results[item.url] = try await IPSWVerifier.verify(item.url, firmware: release) { _ in }
             } catch {
                 errorMessage = error.localizedDescription
             }
-        }
-    }
-
-    private func chooseFolder() {
-        let panel = NSOpenPanel()
-        panel.canChooseFiles = false
-        panel.canChooseDirectories = true
-        panel.canCreateDirectories = true
-        if panel.runModal() == .OK, let url = panel.url {
-            model.library.setFolder(url)
         }
     }
 }

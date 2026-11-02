@@ -10,7 +10,7 @@ A free, open-source macOS app to revive or restore a Mac in DFU mode, from anoth
 
 - **Flash**: detects a Mac connected in DFU mode, then revives it (keeps data) or restores it (erases it) with the macOS version you pick.
 - **Automatic DFU entry**: one click puts the other Mac into DFU over USB-C, without touching its keyboard (Apple silicon to Apple silicon, through both DFU ports).
-- **Library**: downloads Apple's restore images (IPSW), checks their checksum, and keeps them on your Mac. Sort, verify, import, or trash them.
+- **Library**: every macOS version Apple still signs, as one universal IPSW per version (each lists the Macs it supports). Downloads resume, are checked against their checksum, and stay on your Mac. Verify, import, or trash them.
 - **Port guide**: shows which USB-C port is the DFU port on each Mac, and the key sequence to enter DFU by hand.
 - **Liquid Glass** interface, native SwiftUI.
 
@@ -37,7 +37,7 @@ xattr -dr com.apple.quarantine "/Applications/DFU Pulse.app"
 
 - Firmware list: [ipsw.me](https://ipsw.me) for the full history and SHA-256 checksums, falling back to Apple's own feed. Files are only ever downloaded from Apple's servers: any other host is refused.
 - IPSW files are stored in `~/Library/Application Support/DFU Pulse/IPSW` (configurable). Interrupted downloads resume.
-- Automatic DFU entry uses [macvdmtool](https://github.com/AsahiLinux/macvdmtool) by the Asahi Linux contributors (Apache-2.0), bundled in `Vendor/`. It needs root, so macOS asks for an administrator password each time.
+- Automatic DFU entry uses [macvdmtool](https://github.com/AsahiLinux/macvdmtool) by the Asahi Linux contributors (Apache-2.0), bundled in `Vendor/`. It needs root, so macOS asks for an administrator password each time, unless you choose **Settings → Allow without password**: that installs, once, a root-owned copy of the tool and a sudo rule allowing only `macvdmtool dfu` for your account. Remove it from the same place.
 
 ## Build
 

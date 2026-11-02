@@ -1,19 +1,5 @@
 import SwiftUI
 
-/// The app's backdrop: the deep blues of the logo, for the glass to refract.
-struct PulseBackground: View {
-    var body: some View {
-        ZStack {
-            Color(red: 0.03, green: 0.06, blue: 0.14)
-            RadialGradient(colors: [Color(red: 0.05, green: 0.45, blue: 0.75).opacity(0.55), .clear],
-                           center: .topTrailing, startRadius: 0, endRadius: 620)
-            RadialGradient(colors: [Color(red: 0.38, green: 0.22, blue: 0.85).opacity(0.35), .clear],
-                           center: .bottomLeading, startRadius: 0, endRadius: 560)
-        }
-        .ignoresSafeArea()
-    }
-}
-
 /// An electrocardiogram line, the app's "pulse".
 struct PulseLine: Shape {
     var phase: CGFloat
@@ -42,57 +28,17 @@ struct PulseLine: Shape {
 }
 
 struct AnimatedPulse: View {
-    var color: Color = .cyan
-
     var body: some View {
         TimelineView(.animation(minimumInterval: 1 / 30)) { context in
             let time = context.date.timeIntervalSinceReferenceDate
             PulseLine(phase: CGFloat(time.truncatingRemainder(dividingBy: 2.4) / 2.4))
-                .stroke(color, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
-                .shadow(color: color.opacity(0.8), radius: 6)
+                .stroke(.tint, style: StrokeStyle(lineWidth: 1.5, lineCap: .round, lineJoin: .round))
         }
+        .accessibilityHidden(true)
     }
 }
 
-struct GlassCard<Content: View>: View {
-    @ViewBuilder var content: Content
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            content
-        }
-        .padding(20)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .glassEffect(.regular, in: .rect(cornerRadius: 24))
-    }
-}
-
-struct PageHeader: View {
-    let title: LocalizedStringKey
-    let subtitle: LocalizedStringKey
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(title).font(.largeTitle.bold())
-            Text(subtitle).foregroundStyle(.secondary)
-        }
-    }
-}
-
-struct Badge: View {
-    let text: LocalizedStringKey
-    var tint: Color = .cyan
-
-    var body: some View {
-        Text(text)
-            .font(.caption.weight(.medium))
-            .padding(.horizontal, 8)
-            .padding(.vertical, 3)
-            .glassEffect(.regular.tint(tint.opacity(0.35)), in: .capsule)
-    }
-}
-
-/// Download state for one firmware, shared by the flash and library pages.
+/// Download state for one release, shared by the flash and library pages.
 struct DownloadControl: View {
     @Environment(AppModel.self) private var model
     let firmware: Firmware
@@ -100,35 +46,34 @@ struct DownloadControl: View {
     var body: some View {
         switch model.downloads.statuses[firmware.build] {
         case .downloading(let received, let total):
-            HStack(spacing: 10) {
+            HStack(spacing: 8) {
                 ProgressView(value: total > 0 ? Double(received) / Double(total) : 0)
-                    .frame(width: 130)
+                    .frame(width: 110)
                 Text(verbatim: "\(received.fileSize) / \(total.fileSize)")
                     .font(.caption.monospacedDigit()).foregroundStyle(.secondary)
                 Button("Pause", systemImage: "pause.fill") { model.downloads.pause(firmware.build) }
-                    .labelStyle(.iconOnly).buttonStyle(.glass)
+                    .labelStyle(.iconOnly).buttonStyle(.borderless)
             }
         case .verifying(let value):
-            HStack(spacing: 10) {
-                ProgressView(value: value).frame(width: 130)
+            HStack(spacing: 8) {
+                ProgressView(value: value).frame(width: 110)
                 Text("Verifying…").font(.caption).foregroundStyle(.secondary)
             }
         case .paused:
             HStack(spacing: 8) {
-                Button("Resume", systemImage: "play.fill") { model.downloads.start(firmware) }
-                    .buttonStyle(.glass)
+                Button("Resume") { model.downloads.start(firmware) }
                 Button("Discard", systemImage: "xmark") { model.downloads.discard(firmware.build) }
-                    .labelStyle(.iconOnly).buttonStyle(.glass)
+                    .labelStyle(.iconOnly).buttonStyle(.borderless)
             }
         case .failed(let message):
             HStack(spacing: 8) {
                 Text(message).font(.caption).foregroundStyle(.orange).lineLimit(2)
-                Button("Retry", systemImage: "arrow.clockwise") { model.downloads.start(firmware) }
-                    .buttonStyle(.glass)
+                Button("Retry") { model.downloads.start(firmware) }
             }
         case nil:
-            Button("Download", systemImage: "arrow.down") { model.downloads.start(firmware) }
-                .buttonStyle(.glass)
+            Button("Download", systemImage: "arrow.down.circle") { model.downloads.start(firmware) }
+                .labelStyle(.iconOnly).buttonStyle(.borderless).font(.title3)
+                .help("Download")
         }
     }
 }

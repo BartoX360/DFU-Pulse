@@ -33,11 +33,14 @@ struct DFUPulseApp: App {
         Window("DFU Pulse", id: "main") {
             ContentView()
                 .environment(model)
-                .preferredColorScheme(.dark)
-                .frame(minWidth: 860, minHeight: 620)
+                .frame(minWidth: 760, minHeight: 540)
                 .task { await model.monitor.watch() }
-                .task { await model.catalog.loadModels() }
+                .task { await model.catalog.refresh() }
         }
-        .windowStyle(.hiddenTitleBar)
+
+        Settings {
+            SettingsView()
+                .environment(model)
+        }
     }
 }

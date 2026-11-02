@@ -16,6 +16,7 @@
 		31B27CE83A658EDCF770A940 /* FlashControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB529FE85F6B571DEA1CECF1 /* FlashControllerTests.swift */; };
 		4AACE0D5E1ED4F5C5DBEBC63 /* IPSWLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D93FA458603412EBC8F2D1 /* IPSWLibrary.swift */; };
 		61BE2C85A2AB136E8847BB77 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81466E15DC7C594177B8F311 /* Models.swift */; };
+		8367B7D879BC9E8763278FBD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7609869635F6E5755BCBC9E /* SettingsView.swift */; };
 		9CD3F1F31DEDF255E4F9AB47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BA6FD557C9C383833867316 /* Assets.xcassets */; };
 		9E13AC845DC7444115FCF610 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 937C41586605F34F08F7BBC5 /* Localizable.xcstrings */; };
 		A80F13C55C3E7AE8615D0C54 /* PortGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8A3A0D1AC7A1FE1A95636C /* PortGuide.swift */; };
@@ -81,6 +82,7 @@
 		B4D93FA458603412EBC8F2D1 /* IPSWLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPSWLibrary.swift; sourceTree = "<group>"; };
 		BB8A3A0D1AC7A1FE1A95636C /* PortGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortGuide.swift; sourceTree = "<group>"; };
 		D2066FBBBBF93F4D4244B1F7 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		D7609869635F6E5755BCBC9E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E09DB5826A6FE7C586AFDFBC /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		E5930E58DA575C7614E60840 /* ssops.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ssops.h; sourceTree = "<group>"; };
 		F4548D424D60F3757E85BC1E /* DFUPulseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DFUPulseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,6 +189,7 @@
 				42D1DB44341D46437A331913 /* FlashView.swift */,
 				2251982D0D7BEE9EB37A2D31 /* GuideView.swift */,
 				E09DB5826A6FE7C586AFDFBC /* LibraryView.swift */,
+				D7609869635F6E5755BCBC9E /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				E8C87CF606723CF7025CEC6A /* LibraryView.swift in Sources */,
 				61BE2C85A2AB136E8847BB77 /* Models.swift in Sources */,
 				A80F13C55C3E7AE8615D0C54 /* PortGuide.swift in Sources */,
+				8367B7D879BC9E8763278FBD /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

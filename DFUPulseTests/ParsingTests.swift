@@ -18,12 +18,13 @@ import Testing
         #expect(!TrustedSource.isApple(URL(string: "https://notapple.com/a.ipsw")!))
     }
 
-    @Test func dropsCatalogEntriesNotHostedByApple() throws {
+    @Test func dropsUnsignedAndForeignEntries() throws {
         let json = """
         {"firmwares":[
-         {"version":"27.2","buildid":"26B123","url":"https://updates.cdn-apple.com/x_27.2_26B123_Restore.ipsw",
+         {"identifier":"Mac14,2","version":"27.2","buildid":"26B123","url":"https://updates.cdn-apple.com/x_27.2_26B123_Restore.ipsw",
           "sha256sum":"ab","sha1sum":"cd","filesize":10,"releasedate":"2026-10-26T18:14:20Z","signed":true},
-         {"version":"27.1","buildid":"26B1","url":"https://evil.example/x.ipsw","signed":true}
+         {"identifier":"Mac14,2","version":"27.1","buildid":"26B1","url":"https://evil.example/x.ipsw","signed":true},
+         {"identifier":"Mac14,2","version":"12.0","buildid":"21A1","url":"https://updates.cdn-apple.com/old.ipsw","signed":false}
         ]}
         """
         let list = try CatalogService.parseIPSWMe(Data(json.utf8))
@@ -31,19 +32,33 @@ import Testing
         #expect(list[0].releaseDate != nil)
     }
 
+    @Test func mergesModelsIntoOneReleasePerBuild() {
+        func entry(_ build: String, _ version: String, _ model: String) -> Firmware {
+            Firmware(version: version, build: build, url: URL(string: "https://updates.cdn-apple.com/\(build).ipsw")!,
+                     sha256: nil, sha1: nil, size: nil, releaseDate: nil, models: [model])
+        }
+        let merged = CatalogService.merge([
+            entry("26B123", "27.2", "Mac14,2"), entry("25G83", "26.6.2", "Mac14,2"),
+            entry("26B123", "27.2", "Mac16,1"), entry("26A428", "27.0", "Mac16,1"),
+        ])
+        #expect(merged.map(\.version) == ["27.2", "27.0", "26.6.2"])
+        #expect(merged[0].models == ["Mac14,2", "Mac16,1"])
+        #expect(merged[0].major == "27")
+    }
+
     @Test func readsAppleFeed() throws {
-        let feed: [String: Any] = ["MobileDeviceSoftwareVersionsByVersion": ["1": ["MobileDeviceSoftwareVersions": ["Mac14,2": [
-            "26B123": ["Restore": [
-                "FirmwareURL": "https://updates.cdn-apple.com/x.ipsw", "FirmwareSHA1": "aa",
-                "ProductVersion": "27.2", "BuildVersion": "26B123",
-            ]],
-            "Unknown": ["Universal": ["Restore": ["BuildVersion": "26B123"]]],
-        ]]]]]
+        let restore: [String: Any] = ["Restore": [
+            "FirmwareURL": "https://updates.cdn-apple.com/x.ipsw", "FirmwareSHA1": "aa",
+            "ProductVersion": "27.2", "BuildVersion": "26B123",
+        ]]
+        let feed: [String: Any] = ["MobileDeviceSoftwareVersionsByVersion": ["1": ["MobileDeviceSoftwareVersions": [
+            "Mac14,2": ["26B123": restore], "Mac16,1": ["26B123": restore],
+        ]]]]
         let data = try PropertyListSerialization.data(fromPropertyList: feed, format: .xml, options: 0)
-        let list = try CatalogService.parseAppleFeed(data, model: "Mac14,2")
+        let list = try CatalogService.parseAppleFeed(data)
         #expect(list.count == 1)
         #expect(list[0].sha1 == "aa")
-        #expect(try CatalogService.parseAppleFeed(data, model: "Mac99,9").isEmpty)
+        #expect(list[0].models == ["Mac14,2", "Mac16,1"])
     }
 
     @Test func listsOnlyMacsFromCfgutil() {
@@ -80,7 +95,7 @@ import Testing
         defer { try? FileManager.default.removeItem(at: url) }
         func firmware(sha256: String?) -> Firmware {
             Firmware(version: "1", build: "1A1", url: url, sha256: sha256, sha1: nil,
-                     size: nil, releaseDate: nil, signed: true)
+                     size: nil, releaseDate: nil, models: [])
         }
         let good = "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
         #expect(try await IPSWVerifier.verify(url, firmware: firmware(sha256: good)) { _ in } == true)

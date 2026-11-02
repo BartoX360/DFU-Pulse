@@ -1,7 +1,7 @@
 import Foundation
 
-/// A macOS restore image published for a Mac model.
-struct Firmware: Identifiable, Hashable, Sendable {
+/// A macOS restore image, shared by every Mac model it supports.
+struct Firmware: Identifiable, Hashable, Codable, Sendable {
     let version: String
     let build: String
     let url: URL
@@ -9,10 +9,11 @@ struct Firmware: Identifiable, Hashable, Sendable {
     let sha1: String?
     let size: Int64?
     let releaseDate: Date?
-    let signed: Bool
+    var models: Set<String>
 
     var id: String { build }
     var fileName: String { url.lastPathComponent }
+    var major: String { String(version.prefix { $0 != "." }) }
 }
 
 /// A Mac seen by Apple Configurator, usually in DFU mode.
