@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/images/icon.png" width="160" alt="DFU Pulse icon"></p>
+
 ![DFU Pulse](docs/images/banner.jpg)
 
 # DFU Pulse
