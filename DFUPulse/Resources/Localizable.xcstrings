@@ -91,6 +91,16 @@
         }
       }
     },
+    "Apple Configurator is installed": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Configurator est installé"
+          }
+        }
+      }
+    },
     "Apple Configurator is required": {
       "localizations": {
         "fr": {
@@ -181,6 +191,16 @@
         }
       }
     },
+    "Back": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retour"
+          }
+        }
+      }
+    },
     "Back: the leftmost USB-C port, seen from behind.": {
       "localizations": {
         "fr": {
@@ -261,6 +281,16 @@
         }
       }
     },
+    "Come back here once it is installed.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revenez ici une fois l’installation terminée."
+          }
+        }
+      }
+    },
     "Compatible with %lld Mac models": {
       "localizations": {
         "fr": {
@@ -271,12 +301,32 @@
         }
       }
     },
+    "Connect the Mac to flash with a USB-C cable that carries data, on its DFU port. The Port guide shows which one.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Branchez le Mac à flasher avec un câble USB-C qui transmet les données, sur son port DFU. Le guide des ports vous indique lequel."
+          }
+        }
+      }
+    },
     "Connect the two Macs with a USB-C cable that carries data, then put the other Mac into DFU.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Reliez les deux Mac avec un câble USB-C qui transmet les données, puis mettez l’autre Mac en DFU."
+          }
+        }
+      }
+    },
+    "Continue": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuer"
           }
         }
       }
@@ -307,6 +357,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "DFU Pulse s’appuie sur cet outil gratuit d’Apple pour dialoguer avec le Mac à flasher."
+          }
+        }
+      }
+    },
+    "DFU Pulse uses Apple's free Apple Configurator to install macOS on the other Mac. It must be in your Applications folder.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DFU Pulse utilise Apple Configurator, l’outil gratuit d’Apple, pour installer macOS sur l’autre Mac. Il doit se trouver dans votre dossier Applications."
           }
         }
       }
@@ -351,12 +411,32 @@
         }
       }
     },
+    "Done: no password will be asked.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "C’est fait : aucun mot de passe ne sera demandé."
+          }
+        }
+      }
+    },
     "Download": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Télécharger"
+          }
+        }
+      }
+    },
+    "Downloads Apple's restore images once and keeps them on this Mac.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Télécharge une fois les images de restauration d’Apple et les garde sur ce Mac."
           }
         }
       }
@@ -387,6 +467,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Passer en DFU à la main"
+          }
+        }
+      }
+    },
+    "Enter DFU without a password": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passer en DFU sans mot de passe"
           }
         }
       }
@@ -461,6 +551,16 @@
         }
       }
     },
+    "Get started": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commencer"
+          }
+        }
+      }
+    },
     "Hinge": {
       "localizations": {
         "fr": {
@@ -521,6 +621,16 @@
         }
       }
     },
+    "Install Apple Configurator": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Installer Apple Configurator"
+          }
+        }
+      }
+    },
     "Intact": {
       "localizations": {
         "fr": {
@@ -557,6 +667,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gardez-le enfoncé en rebranchant l’alimentation, jusqu’à 10 secondes, jusqu’à ce que le Mac apparaisse ici."
+          }
+        }
+      }
+    },
+    "Later": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plus tard"
           }
         }
       }
@@ -921,6 +1041,26 @@
         }
       }
     },
+    "Revive keeps the data, Restore erases the Mac and installs the macOS version you choose.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raviver garde les données, Restaurer efface le Mac et installe la version de macOS de votre choix."
+          }
+        }
+      }
+    },
+    "Revive or restore a Mac that no longer starts, from this Mac, over a USB-C cable.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ravivez ou restaurez un Mac qui ne démarre plus, depuis ce Mac, avec un câble USB-C."
+          }
+        }
+      }
+    },
     "Right": {
       "localizations": {
         "fr": {
@@ -947,6 +1087,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Afficher dans le Finder"
+          }
+        }
+      }
+    },
+    "Shows which USB-C port to use on each Mac.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indique quel port USB-C utiliser sur chaque Mac."
           }
         }
       }
@@ -997,6 +1147,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Le Mac risque de rester inutilisable jusqu’à un nouveau flash."
+          }
+        }
+      }
+    },
+    "Then use “Enter DFU automatically” or the key sequence from the guide. The Mac shows up in Flash as soon as it is in DFU mode.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utilisez ensuite « Passer en DFU automatiquement » ou la combinaison de touches du guide. Le Mac apparaît dans Flasher dès qu’il est en mode DFU."
+          }
+        }
+      }
+    },
+    "This installs a copy of macvdmtool owned by root and a sudo rule that lets your account run only “macvdmtool dfu”. Nothing runs in the background, and you can remove it in Settings.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cela installe une copie de macvdmtool appartenant à root et une règle sudo qui autorise votre compte à lancer uniquement « macvdmtool dfu ». Rien ne tourne en arrière-plan, et vous pouvez tout retirer dans les Réglages."
+          }
+        }
+      }
+    },
+    "To put the other Mac into DFU for you, DFU Pulse needs administrator rights. Enter your password once now, and it will never be asked again for this.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour mettre l’autre Mac en DFU à votre place, DFU Pulse a besoin des droits administrateur. Saisissez votre mot de passe une seule fois maintenant, il ne sera plus jamais demandé pour cela."
           }
         }
       }
@@ -1087,6 +1267,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "En attente d’un Mac en mode DFU"
+          }
+        }
+      }
+    },
+    "Welcome to DFU Pulse": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bienvenue dans DFU Pulse"
+          }
+        }
+      }
+    },
+    "You can also skip this: macOS will then ask for the password each time.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous pouvez aussi passer cette étape : macOS demandera alors le mot de passe à chaque fois."
+          }
+        }
+      }
+    },
+    "You're ready": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout est prêt"
           }
         }
       }

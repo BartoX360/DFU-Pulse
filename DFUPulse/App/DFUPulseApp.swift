@@ -28,6 +28,7 @@ final class AppModel {
 @main
 struct DFUPulseApp: App {
     @State private var model = AppModel()
+    @AppStorage("onboardingDone") private var onboardingDone = false
 
     var body: some Scene {
         Window("DFU Pulse", id: "main") {
@@ -36,6 +37,15 @@ struct DFUPulseApp: App {
                 .frame(minWidth: 760, minHeight: 540)
                 .task { await model.monitor.watch() }
                 .task { await model.catalog.refresh() }
+                .sheet(isPresented: Binding(get: { !onboardingDone }, set: { onboardingDone = !$0 })) {
+                    OnboardingView()
+                        .interactiveDismissDisabled()
+                }
+        }
+        .commands {
+            CommandGroup(before: .help) {
+                Button("Welcome to DFU Pulse") { onboardingDone = false }
+            }
         }
 
         Settings {
