@@ -8,6 +8,20 @@ import Testing
         #expect(parsed?.version == "27.2")
         #expect(parsed?.build == "26B123")
         #expect(IPSWName.parse("notes.ipsw") == nil)
+        #expect(IPSWName.parse("iPhone17,3_27.2_24B83_Restore.ipsw")?.build == "24B83")
+    }
+
+    @Test func tellsDeviceKinds() {
+        #expect(DeviceKind(model: "iPad16,3").system == "iPadOS")
+        #expect(DeviceKind(model: "iPhone17,3").isMobile)
+        #expect(DeviceKind(prefixOf: "AppleTV14,1") == nil)
+        let names = CatalogService.deviceNames(from: [
+            .init(name: "iPhone 17", identifier: "iPhone18,3"),
+            .init(name: "Mac mini (M4)", identifier: "Mac16,10"),
+            .init(name: "Apple T2", identifier: "iBridge2,1"),
+            .init(name: "Apple TV", identifier: "AppleTV14,1"),
+        ])
+        #expect(Set(names.keys) == ["iPhone18,3", "Mac16,10"])
     }
 
     @Test func onlyTrustsAppleHosts() {
@@ -61,17 +75,19 @@ import Testing
         #expect(list[0].models == ["Mac14,2", "Mac16,1"])
     }
 
-    @Test func listsOnlyMacsFromCfgutil() {
+    @Test func listsAppleDevicesFromCfgutil() {
         let json = """
         {"Command":"list","Type":"CommandOutput","Devices":["0x1","0x2"],"Output":{
          "0x1":{"ECID":"0x1","deviceType":"Mac14,2","name":null,"locationID":4194304,"UDID":null},
          "0x2":{"ECID":"0x2","deviceType":"iPhone15,2","name":"Phone"},
-         "0x3":{"ECID":"0x3","deviceType":"iBridge2,1"}
+         "0x3":{"ECID":"0x3","deviceType":"iBridge2,1"},
+         "0x4":{"ECID":"0x4","deviceType":"AppleTV14,1"}
         }}
         """
         let devices = Configurator.parseDevices(Data(json.utf8))
-        #expect(devices.map(\.ecid) == ["0x1", "0x3"])
-        #expect(devices[1].isT2)
+        #expect(devices.map(\.ecid) == ["0x1", "0x2", "0x3"])
+        #expect(devices[1].isMobile)
+        #expect(devices[2].isT2)
         #expect(Configurator.parseDevices(Data("nope".utf8)).isEmpty)
     }
 

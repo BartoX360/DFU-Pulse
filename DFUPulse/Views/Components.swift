@@ -6,14 +6,14 @@ struct DownloadControl: View {
     let firmware: Firmware
 
     var body: some View {
-        switch model.downloads.statuses[firmware.build] {
+        switch model.downloads.statuses[firmware.id] {
         case .downloading(let received, let total):
             HStack(spacing: 8) {
                 ProgressView(value: total > 0 ? Double(received) / Double(total) : 0)
                     .frame(width: 110)
                 Text(verbatim: "\(received.fileSize) / \(total.fileSize)")
                     .font(.caption.monospacedDigit()).foregroundStyle(.secondary)
-                Button("Pause", systemImage: "pause.fill") { model.downloads.pause(firmware.build) }
+                Button("Pause", systemImage: "pause.fill") { model.downloads.pause(firmware.id) }
                     .labelStyle(.iconOnly).buttonStyle(.borderless)
             }
         case .verifying(let value):
@@ -24,7 +24,7 @@ struct DownloadControl: View {
         case .paused:
             HStack(spacing: 8) {
                 Button("Resume") { model.downloads.start(firmware) }
-                Button("Discard", systemImage: "xmark") { model.downloads.discard(firmware.build) }
+                Button("Discard", systemImage: "xmark") { model.downloads.discard(firmware.id) }
                     .labelStyle(.iconOnly).buttonStyle(.borderless)
             }
         case .failed(let message):

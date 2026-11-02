@@ -4,16 +4,16 @@
 
 # DFU Pulse
 
-A free, open-source macOS app to revive or restore a Mac in DFU mode, from another Mac.
+A free, open-source macOS app to revive or restore a Mac, iPhone or iPad in DFU mode, from a Mac.
 
-*Une app libre et gratuite pour raviver ou restaurer un Mac en mode DFU depuis un autre Mac. L'interface est en français et en anglais.*
+*Une app libre et gratuite pour raviver ou restaurer un Mac, un iPhone ou un iPad en mode DFU depuis un Mac. L'interface est en français et en anglais.*
 
 ## What it does
 
-- **Flash**: detects a Mac connected in DFU mode, then revives it (keeps data) or restores it (erases it) with the macOS version you pick.
+- **Flash**: detects a Mac, iPhone or iPad connected in DFU mode. A Mac can be revived (keeps data) or restored (erased) with the macOS version you pick; an iPhone or iPad is restored with an iOS or iPadOS version Apple still signs.
 - **Automatic DFU entry**: one click puts the other Mac into DFU over USB-C, without touching its keyboard (Apple silicon to Apple silicon, through both DFU ports).
-- **Library**: every macOS version Apple still signs, as one universal IPSW per version (each lists the Macs it supports). Downloads resume, are checked against their checksum, and stay on your Mac. Verify, import, or trash them.
-- **Port guide**: shows which USB-C port is the DFU port on each Mac, and the key sequence to enter DFU by hand.
+- **Library**: every macOS version Apple still signs, as one universal IPSW per version (each lists the Macs it supports), and the signed iOS and iPadOS images for each iPhone and iPad model. Downloads resume, are checked against their checksum, and stay on your Mac. Verify, import, or trash them.
+- **Port guide**: shows which USB-C port is the DFU port on each Mac, the key sequence to enter DFU by hand, and the button sequence for each iPhone and iPad.
 - **Liquid Glass** interface, native SwiftUI.
 
 ## Requirements
@@ -55,4 +55,4 @@ open DFUPulse.xcodeproj
 
 [GPL-3.0](LICENSE). DFU Pulse is free software: any distributed derivative must stay free too. `Vendor/macvdmtool` keeps its Apache-2.0 license.
 
-DFU Pulse is not affiliated with Apple. Restoring erases a Mac: use it at your own risk.
+DFU Pulse is not affiliated with Apple. Restoring erases the device: use it at your own risk.

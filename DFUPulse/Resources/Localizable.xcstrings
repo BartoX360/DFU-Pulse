@@ -301,22 +301,32 @@
         }
       }
     },
-    "Connect the Mac to flash with a USB-C cable that carries data, on its DFU port. The Port guide shows which one.": {
+    "Connect the Mac, iPhone or iPad with a cable that carries data, then put it into DFU. The Port guide shows how.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Branchez le Mac à flasher avec un câble USB-C qui transmet les données, sur son port DFU. Le guide des ports vous indique lequel."
+            "value": "Branchez le Mac, l’iPhone ou l’iPad avec un câble qui transmet les données, puis mettez-le en DFU. Le guide des ports explique comment."
           }
         }
       }
     },
-    "Connect the two Macs with a USB-C cable that carries data, then put the other Mac into DFU.": {
+    "Connect the device to flash with a cable that carries data, on its DFU port for a Mac. The Port guide shows which one.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Reliez les deux Mac avec un câble USB-C qui transmet les données, puis mettez l’autre Mac en DFU."
+            "value": "Branchez l’appareil à flasher avec un câble qui transmet les données, sur son port DFU pour un Mac. Le guide des ports indique lequel."
+          }
+        }
+      }
+    },
+    "Connect the device to this Mac with a cable that carries data.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reliez l’appareil à ce Mac avec un câble qui transmet les données."
           }
         }
       }
@@ -351,22 +361,22 @@
         }
       }
     },
-    "DFU Pulse relies on Apple's free tool to talk to the Mac being flashed.": {
+    "DFU Pulse relies on Apple's free tool to talk to the device being flashed.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "DFU Pulse s’appuie sur cet outil gratuit d’Apple pour dialoguer avec le Mac à flasher."
+            "value": "DFU Pulse s’appuie sur cet outil gratuit d’Apple pour dialoguer avec l’appareil à flasher."
           }
         }
       }
     },
-    "DFU Pulse uses Apple's free Apple Configurator to install macOS on the other Mac. It must be in your Applications folder.": {
+    "DFU Pulse uses Apple's free Apple Configurator to install the system on the other device. It must be in your Applications folder.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "DFU Pulse utilise Apple Configurator, l’outil gratuit d’Apple, pour installer macOS sur l’autre Mac. Il doit se trouver dans votre dossier Applications."
+            "value": "DFU Pulse utilise Apple Configurator, l’outil gratuit d’Apple, pour installer le système sur l’autre appareil. Il doit se trouver dans votre dossier Applications."
           }
         }
       }
@@ -377,6 +387,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Port DFU"
+          }
+        }
+      }
+    },
+    "Device": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appareil"
+          }
+        }
+      }
+    },
+    "Device to flash": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appareil à flasher"
           }
         }
       }
@@ -401,12 +431,12 @@
         }
       }
     },
-    "Done. The Mac will restart on its own.": {
+    "Done. The device will restart on its own.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Terminé. Le Mac va redémarrer tout seul."
+            "value": "Terminé. L’appareil va redémarrer tout seul."
           }
         }
       }
@@ -441,12 +471,32 @@
         }
       }
     },
+    "Each iPhone and iPad image fits only a few models. Only versions Apple still signs can be installed.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaque image iPhone ou iPad ne convient qu’à quelques modèles. Seules les versions encore signées par Apple peuvent être installées."
+          }
+        }
+      }
+    },
     "Earlier Apple silicon models": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Modèles Apple silicon plus anciens"
+          }
+        }
+      }
+    },
+    "Enter DFU": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passer en DFU"
           }
         }
       }
@@ -491,12 +541,12 @@
         }
       }
     },
-    "Erase this Mac?": {
+    "Erase this device?": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effacer ce Mac ?"
+            "value": "Effacer cet appareil ?"
           }
         }
       }
@@ -571,6 +621,26 @@
         }
       }
     },
+    "Hold the Home button and the side or top button together for 8 seconds.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maintenez ensemble le bouton principal et le bouton latéral ou supérieur pendant 8 secondes."
+          }
+        }
+      }
+    },
+    "Hold the Home button and the top button together for 8 seconds.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maintenez ensemble le bouton principal et le bouton supérieur pendant 8 secondes."
+          }
+        }
+      }
+    },
     "Hold the power button for up to 10 seconds until the Mac turns off.": {
       "localizations": {
         "fr": {
@@ -581,12 +651,52 @@
         }
       }
     },
+    "Hold the side button and volume down together for 8 seconds.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maintenez ensemble le bouton latéral et le bouton de volume bas pendant 8 secondes."
+          }
+        }
+      }
+    },
+    "Hold the side button until the screen turns black.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maintenez le bouton latéral jusqu’à ce que l’écran devienne noir."
+          }
+        }
+      }
+    },
+    "Hold the top button until the screen turns black.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maintenez le bouton supérieur jusqu’à ce que l’écran devienne noir."
+          }
+        }
+      }
+    },
     "IPSW folder": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Dossier des IPSW"
+          }
+        }
+      }
+    },
+    "If the screen shows a computer and a cable, the device is in recovery mode: it can be restored too.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si l’écran affiche un ordinateur et un câble, l’appareil est en mode de récupération : il peut aussi être restauré."
           }
         }
       }
@@ -607,6 +717,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Importer"
+          }
+        }
+      }
+    },
+    "In DFU mode the screen stays black. If the Apple logo appears, a button was held too long: start again.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En mode DFU, l’écran reste noir. Si le logo Apple apparaît, un bouton a été maintenu trop longtemps : recommencez."
           }
         }
       }
@@ -651,12 +771,12 @@
         }
       }
     },
-    "Keep both Macs powered and connected.": {
+    "Keep both devices powered and connected.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gardez les deux Mac alimentés et reliés."
+            "value": "Gardez les deux appareils alimentés et reliés."
           }
         }
       }
@@ -667,6 +787,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gardez-le enfoncé en rebranchant l’alimentation, jusqu’à 10 secondes, jusqu’à ce que le Mac apparaisse ici."
+          }
+        }
+      }
+    },
+    "Keep holding the side button and also hold volume down for 5 seconds.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sans relâcher le bouton latéral, maintenez aussi le bouton de volume bas pendant 5 secondes."
+          }
+        }
+      }
+    },
+    "Keep holding the top button and also hold the volume button farthest from it for 5 seconds.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sans relâcher le bouton supérieur, maintenez aussi le bouton de volume le plus éloigné pendant 5 secondes."
           }
         }
       }
@@ -731,22 +871,22 @@
         }
       }
     },
-    "Mac": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mac"
-          }
-        }
-      }
-    },
     "Mac to flash": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Mac à flasher"
+          }
+        }
+      }
+    },
+    "Model": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modèle"
           }
         }
       }
@@ -807,6 +947,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sans mot de passe"
+          }
+        }
+      }
+    },
+    "No signed version for this model.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune version signée pour ce modèle."
           }
         }
       }
@@ -901,6 +1051,16 @@
         }
       }
     },
+    "Platform": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plateforme"
+          }
+        }
+      }
+    },
     "Plug the cable into the DFU port, with nothing else in the USB ports.": {
       "localizations": {
         "fr": {
@@ -961,6 +1121,26 @@
         }
       }
     },
+    "Press and release the volume button nearest the top button, then the other volume button.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appuyez brièvement sur le bouton de volume le plus proche du bouton supérieur, puis sur l’autre bouton de volume."
+          }
+        }
+      }
+    },
+    "Press and release volume up, then volume down.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appuyez brièvement sur volume haut, puis sur volume bas."
+          }
+        }
+      }
+    },
     "Rack enclosure": {
       "localizations": {
         "fr": {
@@ -977,6 +1157,46 @@
           "stringUnit": {
             "state": "translated",
             "value": "Refusé : ce fichier n’est pas hébergé par Apple."
+          }
+        }
+      }
+    },
+    "Release the side button and keep holding volume down for about 10 seconds, until the iPhone appears in Flash.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Relâchez le bouton latéral en gardant volume bas enfoncé environ 10 secondes, jusqu’à ce que l’iPhone apparaisse dans Flasher."
+          }
+        }
+      }
+    },
+    "Release the side or top button and keep holding Home for about 10 seconds, until the iPhone appears in Flash.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Relâchez le bouton latéral ou supérieur en gardant le bouton principal enfoncé environ 10 secondes, jusqu’à ce que l’iPhone apparaisse dans Flasher."
+          }
+        }
+      }
+    },
+    "Release the top button and keep holding Home for about 10 seconds, until the iPad appears in Flash.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Relâchez le bouton supérieur en gardant le bouton principal enfoncé environ 10 secondes, jusqu’à ce que l’iPad apparaisse dans Flasher."
+          }
+        }
+      }
+    },
+    "Release the top button and keep holding the volume button for about 10 seconds, until the iPad appears in Flash.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Relâchez le bouton supérieur en gardant le bouton de volume enfoncé environ 10 secondes, jusqu’à ce que l’iPad apparaisse dans Flasher."
           }
         }
       }
@@ -1011,6 +1231,26 @@
         }
       }
     },
+    "Restoring erases everything on this device and installs the version you choose.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La restauration efface tout le contenu de cet appareil et installe la version choisie."
+          }
+        }
+      }
+    },
+    "Restoring erases the device. If Activation Lock is on, its Apple Account password is needed afterwards.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La restauration efface l’appareil. Si le verrouillage d’activation est actif, le mot de passe de son compte Apple sera demandé ensuite."
+          }
+        }
+      }
+    },
     "Resume": {
       "localizations": {
         "fr": {
@@ -1041,22 +1281,22 @@
         }
       }
     },
-    "Revive keeps the data, Restore erases the Mac and installs the macOS version you choose.": {
+    "Revive keeps a Mac's data. Restore erases the device and installs the version you choose.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Raviver garde les données, Restaurer efface le Mac et installe la version de macOS de votre choix."
+            "value": "Raviver conserve les données d’un Mac. Restaurer efface l’appareil et installe la version choisie."
           }
         }
       }
     },
-    "Revive or restore a Mac that no longer starts, from this Mac, over a USB-C cable.": {
+    "Revive or restore a Mac, iPhone or iPad that no longer starts, from this Mac, over a cable.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ravivez ou restaurez un Mac qui ne démarre plus, depuis ce Mac, avec un câble USB-C."
+            "value": "Ravivez ou restaurez un Mac, un iPhone ou un iPad qui ne démarre plus, depuis ce Mac, avec un câble."
           }
         }
       }
@@ -1091,12 +1331,12 @@
         }
       }
     },
-    "Shows which USB-C port to use on each Mac.": {
+    "Shows which port to use on each Mac, and the buttons for iPhone and iPad.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Indique quel port USB-C utiliser sur chaque Mac."
+            "value": "Indique le port à utiliser sur chaque Mac, et les boutons pour l’iPhone et l’iPad."
           }
         }
       }
@@ -1141,22 +1381,22 @@
         }
       }
     },
-    "The Mac may stay unusable until you flash it again.": {
+    "The device may stay unusable until you flash it again.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le Mac risque de rester inutilisable jusqu’à un nouveau flash."
+            "value": "L’appareil risque de rester inutilisable jusqu’à un nouveau flash."
           }
         }
       }
     },
-    "Then use “Enter DFU automatically” or the key sequence from the guide. The Mac shows up in Flash as soon as it is in DFU mode.": {
+    "Then use “Enter DFU automatically” for a Mac, or the button sequence from the guide. The device shows up in Flash as soon as it is in DFU mode.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Utilisez ensuite « Passer en DFU automatiquement » ou la combinaison de touches du guide. Le Mac apparaît dans Flasher dès qu’il est en mode DFU."
+            "value": "Utilisez ensuite « Passer en DFU automatiquement » pour un Mac, ou la séquence de boutons du guide. L’appareil apparaît dans Flasher dès qu’il est en mode DFU."
           }
         }
       }
@@ -1261,12 +1501,22 @@
         }
       }
     },
-    "Waiting for a Mac in DFU mode": {
+    "Version": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "En attente d’un Mac en mode DFU"
+            "value": "Version"
+          }
+        }
+      }
+    },
+    "Waiting for a device in DFU mode": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En attente d’un appareil en mode DFU"
           }
         }
       }
@@ -1277,6 +1527,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bienvenue dans DFU Pulse"
+          }
+        }
+      }
+    },
+    "With a Home button": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avec bouton principal"
+          }
+        }
+      }
+    },
+    "Without a Home button": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sans bouton principal"
           }
         }
       }
@@ -1301,12 +1571,52 @@
         }
       }
     },
-    "macOS version": {
+    "iPhone 6s or earlier, and iPhone SE (1st generation)": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Version de macOS"
+            "value": "iPhone 6s ou plus ancien, et iPhone SE (1re génération)"
+          }
+        }
+      }
+    },
+    "iPhone 7 and iPhone 7 Plus": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone 7 et iPhone 7 Plus"
+          }
+        }
+      }
+    },
+    "iPhone 8 or later, and iPhone SE (2nd generation or later)": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone 8 ou plus récent, et iPhone SE (2e génération ou plus récent)"
+          }
+        }
+      }
+    },
+    "iPhones and iPads enter DFU with their buttons only.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les iPhone et iPad passent en DFU uniquement avec leurs boutons."
+          }
+        }
+      }
+    },
+    "iPhones and iPads have no DFU port: plug any data cable into this Mac. They enter DFU with their buttons only.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les iPhone et iPad n’ont pas de port DFU : branchez n’importe quel câble de données sur ce Mac. Ils passent en DFU uniquement avec leurs boutons."
           }
         }
       }

@@ -35,7 +35,7 @@ final class FlashController {
 
         // A restore lasts many minutes: the host must not sleep halfway through.
         activity = ProcessInfo.processInfo.beginActivity(
-            options: [.userInitiated, .idleSystemSleepDisabled], reason: "Flashing a Mac")
+            options: [.userInitiated, .idleSystemSleepDisabled], reason: "Flashing a device")
 
         pipe.fileHandleForReading.readabilityHandler = { [weak self] handle in
             let chunk = handle.availableData

@@ -22,7 +22,7 @@ struct FlashView: View {
                 Section {
                     Label("Apple Configurator is required", systemImage: "exclamationmark.triangle")
                         .foregroundStyle(.orange)
-                    Text("DFU Pulse relies on Apple's free tool to talk to the Mac being flashed.")
+                    Text("DFU Pulse relies on Apple's free tool to talk to the device being flashed.")
                         .foregroundStyle(.secondary)
                     Link("Get it on the Mac App Store", destination: Configurator.appStoreURL)
                 }
@@ -48,9 +48,9 @@ struct FlashView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack(spacing: 8) {
                         ProgressView().controlSize(.small)
-                        Text("Waiting for a Mac in DFU mode").font(.headline)
+                        Text("Waiting for a device in DFU mode").font(.headline)
                     }
-                    Text("Connect the two Macs with a USB-C cable that carries data, then put the other Mac into DFU.")
+                    Text("Connect the Mac, iPhone or iPad with a cable that carries data, then put it into DFU. The Port guide shows how.")
                         .foregroundStyle(.secondary)
                 }
                 .padding(.vertical, 4)
@@ -74,7 +74,7 @@ struct FlashView: View {
                     Text(entryError).font(.callout).foregroundStyle(.orange)
                 }
             } else {
-                Picker("Mac", selection: Binding(get: { target?.id }, set: { targetID = $0 })) {
+                Picker("Device", selection: Binding(get: { target?.id }, set: { targetID = $0 })) {
                     ForEach(model.monitor.devices) { device in
                         Text(verbatim: "\(model.catalog.displayName(for: device.model)) · \(device.ecid)")
                             .tag(Optional(device.id))
@@ -84,19 +84,36 @@ struct FlashView: View {
                 .labelsHidden()
             }
         } header: {
-            Text("Mac to flash")
+            Text("Device to flash")
         } footer: {
             if model.monitor.devices.isEmpty {
-                Text(DFUEntry.access == .passwordless
-                     ? "Automatic entry needs both Macs on Apple silicon, joined by their DFU ports."
-                     : "Automatic entry needs both Macs on Apple silicon, joined by their DFU ports, and an administrator password. You can skip the password in Settings.")
-                    .foregroundStyle(.secondary)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(DFUEntry.access == .passwordless
+                         ? "Automatic entry needs both Macs on Apple silicon, joined by their DFU ports."
+                         : "Automatic entry needs both Macs on Apple silicon, joined by their DFU ports, and an administrator password. You can skip the password in Settings.")
+                    Text("iPhones and iPads enter DFU with their buttons only.")
+                }
+                .foregroundStyle(.secondary)
             }
         }
     }
 
     @ViewBuilder
     private func actionSection(_ target: TargetDevice) -> some View {
+        if target.isMobile {
+            Section {
+                Text("Restoring erases everything on this device and installs the version you choose.")
+                    .foregroundStyle(.orange)
+                versionRows(target)
+            }
+            .task(id: target.model) { await model.catalog.loadReleases(for: target.model) }
+        } else {
+            macActionSection(target)
+        }
+    }
+
+    @ViewBuilder
+    private func macActionSection(_ target: TargetDevice) -> some View {
         Section {
             Picker("Action", selection: $mode) {
                 Text("Revive").tag(RestoreMode.revive)
@@ -131,14 +148,14 @@ struct FlashView: View {
     private func versionRows(_ target: TargetDevice) -> some View {
         let compatible = model.catalog.releases(for: target.model)
         if let firmware = compatible.first(where: { $0.build == build }) ?? compatible.first {
-            Picker("macOS version", selection: Binding(get: { firmware.build }, set: { build = $0 })) {
+            Picker("Version", selection: Binding(get: { firmware.build }, set: { build = $0 })) {
                 ForEach(compatible) { item in
-                    Text(verbatim: "macOS \(item.version) (\(item.build))"
-                         + (model.library.item(build: item.build) == nil ? "" : "  ✓"))
+                    Text(verbatim: "\(item.system) \(item.version) (\(item.build))"
+                         + (model.library.item(for: item) == nil ? "" : "  ✓"))
                         .tag(item.build)
                 }
             }
-            if let local = model.library.item(build: firmware.build) {
+            if let local = model.library.item(for: firmware) {
                 restoreButton(target, ipsw: local.url)
             } else {
                 LabeledContent {
@@ -148,7 +165,7 @@ struct FlashView: View {
                     if let size = firmware.size { Text(verbatim: size.fileSize) }
                 }
             }
-        } else if model.catalog.isLoading {
+        } else if model.catalog.isLoading || model.catalog.loadingModels.contains(target.model) {
             ProgressView()
         } else {
             Text(model.catalog.failure ?? String(localized: "No compatible version found."))
@@ -164,7 +181,7 @@ struct FlashView: View {
                 .buttonStyle(.glassProminent).tint(.red)
                 .disabled(!Configurator.isInstalled)
         }
-        .confirmationDialog("Erase this Mac?", isPresented: $confirming) {
+        .confirmationDialog("Erase this device?", isPresented: $confirming) {
             Button("Erase and restore", role: .destructive) {
                 model.flash.start(mode: .restore, target: target, ipsw: ipsw)
             }
@@ -179,14 +196,14 @@ struct FlashView: View {
             switch model.flash.state {
             case .running:
                 Text("Flashing in progress").font(.headline)
-                Text("Keep both Macs powered and connected.").foregroundStyle(.secondary)
+                Text("Keep both devices powered and connected.").foregroundStyle(.secondary)
                 if let progress = model.flash.progress {
                     ProgressView(value: progress)
                 } else {
                     ProgressView().progressViewStyle(.linear)
                 }
             case .succeeded:
-                Label("Done. The Mac will restart on its own.", systemImage: "checkmark.circle")
+                Label("Done. The device will restart on its own.", systemImage: "checkmark.circle")
                     .foregroundStyle(.green)
             case .failed(let status):
                 Label("Flashing failed (code \(status)).", systemImage: "xmark.octagon")
@@ -201,7 +218,7 @@ struct FlashView: View {
                         .confirmationDialog("Stop flashing?", isPresented: $confirmingCancel) {
                             Button("Stop", role: .destructive) { model.flash.cancel() }
                         } message: {
-                            Text("The Mac may stay unusable until you flash it again.")
+                            Text("The device may stay unusable until you flash it again.")
                         }
                 } else {
                     Button("Done") { model.flash.reset() }

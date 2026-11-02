@@ -1,9 +1,76 @@
 import SwiftUI
 
 struct GuideView: View {
+    @State private var platform: DeviceKind = .mac
     @State private var family = PortFamily.all[5]
+    @State private var mobile = MobileFamily.all[0]
 
     var body: some View {
+        Group {
+            if platform.isMobile {
+                mobileGuide
+            } else {
+                macGuide
+            }
+        }
+        .formStyle(.grouped)
+        .navigationTitle("Port guide")
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Picker("Platform", selection: $platform) {
+                    Text(verbatim: "Mac").tag(DeviceKind.mac)
+                    Text(verbatim: "iPhone & iPad").tag(DeviceKind.iPhone)
+                }
+                .pickerStyle(.segmented)
+                .labelsHidden()
+            }
+        }
+    }
+
+    private var mobileGuide: some View {
+        Form {
+            Section {
+                Picker("Device to flash", selection: $mobile) {
+                    ForEach(MobileFamily.all) { item in
+                        Text(verbatim: "\(item.product) — \(String(localized: item.detail))").tag(item)
+                    }
+                }
+            } footer: {
+                Text("iPhones and iPads have no DFU port: plug any data cable into this Mac. They enter DFU with their buttons only.")
+                    .foregroundStyle(.secondary)
+            }
+
+            Section("Enter DFU") {
+                HStack(alignment: .top, spacing: 16) {
+                    Image(systemName: mobile.symbol)
+                        .font(.system(size: 40, weight: .light))
+                        .foregroundStyle(.secondary)
+                        .frame(width: 64)
+                        .accessibilityHidden(true)
+                    VStack(alignment: .leading, spacing: 8) {
+                        ForEach(Array(([LocalizedStringResource("Connect the device to this Mac with a cable that carries data.")] + mobile.steps).enumerated()), id: \.offset) { index, step in
+                            HStack(alignment: .firstTextBaseline, spacing: 10) {
+                                Text(verbatim: "\(index + 1).")
+                                    .monospacedDigit().foregroundStyle(.secondary)
+                                Text(step)
+                            }
+                        }
+                    }
+                }
+                .padding(.vertical, 4)
+                Text("In DFU mode the screen stays black. If the Apple logo appears, a button was held too long: start again.")
+                    .foregroundStyle(.secondary)
+                Text("If the screen shows a computer and a cable, the device is in recovery mode: it can be restored too.")
+                    .foregroundStyle(.secondary)
+            }
+
+            Section("Restore") {
+                Text("Restoring erases the device. If Activation Lock is on, its Apple Account password is needed afterwards.")
+            }
+        }
+    }
+
+    private var macGuide: some View {
         Form {
             Section {
                 Picker("Mac to flash", selection: $family) {
@@ -43,8 +110,6 @@ struct GuideView: View {
                 Link("Apple's reference table", destination: URL(string: "https://support.apple.com/120694")!)
             }
         }
-        .formStyle(.grouped)
-        .navigationTitle("Port guide")
     }
 }
 

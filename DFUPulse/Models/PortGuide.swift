@@ -97,3 +97,51 @@ extension PortFamily {
         }
     }
 }
+
+/// How an iPhone or iPad enters DFU, from Apple's service documentation.
+/// These devices have no DFU port: any cable to this Mac works, and only
+/// their buttons can put them in DFU.
+struct MobileFamily: Identifiable, Hashable, Sendable {
+    let id: String
+    let product: String
+    let detail: LocalizedStringResource
+    let symbol: String
+    let steps: [LocalizedStringResource]
+
+    static func == (lhs: MobileFamily, rhs: MobileFamily) -> Bool { lhs.id == rhs.id }
+    func hash(into hasher: inout Hasher) { hasher.combine(id) }
+}
+
+extension MobileFamily {
+    static let all: [MobileFamily] = [
+        .init(id: "iphone-8", product: "iPhone", detail: "iPhone 8 or later, and iPhone SE (2nd generation or later)",
+              symbol: "iphone", steps: [
+                  "Press and release volume up, then volume down.",
+                  "Hold the side button until the screen turns black.",
+                  "Keep holding the side button and also hold volume down for 5 seconds.",
+                  "Release the side button and keep holding volume down for about 10 seconds, until the iPhone appears in Flash.",
+              ]),
+        .init(id: "iphone-7", product: "iPhone", detail: "iPhone 7 and iPhone 7 Plus",
+              symbol: "iphone.homebutton", steps: [
+                  "Hold the side button and volume down together for 8 seconds.",
+                  "Release the side button and keep holding volume down for about 10 seconds, until the iPhone appears in Flash.",
+              ]),
+        .init(id: "iphone-6s", product: "iPhone", detail: "iPhone 6s or earlier, and iPhone SE (1st generation)",
+              symbol: "iphone.homebutton", steps: [
+                  "Hold the Home button and the side or top button together for 8 seconds.",
+                  "Release the side or top button and keep holding Home for about 10 seconds, until the iPhone appears in Flash.",
+              ]),
+        .init(id: "ipad-faceid", product: "iPad", detail: "Without a Home button",
+              symbol: "ipad", steps: [
+                  "Press and release the volume button nearest the top button, then the other volume button.",
+                  "Hold the top button until the screen turns black.",
+                  "Keep holding the top button and also hold the volume button farthest from it for 5 seconds.",
+                  "Release the top button and keep holding the volume button for about 10 seconds, until the iPad appears in Flash.",
+              ]),
+        .init(id: "ipad-home", product: "iPad", detail: "With a Home button",
+              symbol: "ipad.homebutton", steps: [
+                  "Hold the Home button and the top button together for 8 seconds.",
+                  "Release the top button and keep holding Home for about 10 seconds, until the iPad appears in Flash.",
+              ]),
+    ]
+}

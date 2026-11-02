@@ -62,14 +62,14 @@ struct OnboardingView: View {
         VStack(spacing: 16) {
             Image("Logo").resizable().frame(width: 96, height: 96)
             Text("Welcome to DFU Pulse").font(.largeTitle.bold())
-            Text("Revive or restore a Mac that no longer starts, from this Mac, over a USB-C cable.")
+            Text("Revive or restore a Mac, iPhone or iPad that no longer starts, from this Mac, over a cable.")
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
             VStack(alignment: .leading, spacing: 12) {
-                feature("bolt", "Flash", "Revive keeps the data, Restore erases the Mac and installs the macOS version you choose.")
+                feature("bolt", "Flash", "Revive keeps a Mac's data. Restore erases the device and installs the version you choose.")
                 feature("externaldrive", "Library", "Downloads Apple's restore images once and keeps them on this Mac.")
-                feature("cable.connector", "Port guide", "Shows which USB-C port to use on each Mac.")
+                feature("cable.connector", "Port guide", "Shows which port to use on each Mac, and the buttons for iPhone and iPad.")
             }
             .padding(.top, 8)
         }
@@ -77,7 +77,7 @@ struct OnboardingView: View {
 
     private var configurator: some View {
         step(symbol: "wrench.and.screwdriver", title: "Install Apple Configurator",
-             text: "DFU Pulse uses Apple's free Apple Configurator to install macOS on the other Mac. It must be in your Applications folder.") {
+             text: "DFU Pulse uses Apple's free Apple Configurator to install the system on the other device. It must be in your Applications folder.") {
             if configuratorInstalled {
                 Label("Apple Configurator is installed", systemImage: "checkmark.circle.fill")
                     .foregroundStyle(.green)
@@ -120,8 +120,8 @@ struct OnboardingView: View {
 
     private var ready: some View {
         step(symbol: "checkmark.seal", title: "You're ready",
-             text: "Connect the Mac to flash with a USB-C cable that carries data, on its DFU port. The Port guide shows which one.") {
-            Text("Then use “Enter DFU automatically” or the key sequence from the guide. The Mac shows up in Flash as soon as it is in DFU mode.")
+             text: "Connect the device to flash with a cable that carries data, on its DFU port for a Mac. The Port guide shows which one.") {
+            Text("Then use “Enter DFU automatically” for a Mac, or the button sequence from the guide. The device shows up in Flash as soon as it is in DFU mode.")
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
         }

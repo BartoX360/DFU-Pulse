@@ -5,10 +5,14 @@ import Observation
 /// uses the same "UniversalMac" IPSW for a given build; only the list of Macs
 /// a build supports differs. ipsw.me provides the full history and SHA-256
 /// sums, Apple's own feed covers the current build when ipsw.me is down.
+/// iPhone and iPad images fit only a few models each, so they are fetched
+/// one model at a time, when needed.
 @MainActor @Observable
 final class CatalogService {
     private(set) var releases: [Firmware] = []
-    private(set) var macNames: [String: String] = [:]
+    private(set) var names: [String: String] = [:]
+    private(set) var mobileReleases: [String: [Firmware]] = [:]
+    private(set) var loadingModels: Set<String> = []
     private(set) var isLoading = false
     private(set) var failure: String?
 
@@ -18,7 +22,7 @@ final class CatalogService {
         if let data = try? Data(contentsOf: cacheURL),
            let cached = try? JSONDecoder().decode(Cache.self, from: data) {
             releases = cached.releases
-            macNames = cached.macNames
+            names = cached.names
         }
     }
 
@@ -29,30 +33,54 @@ final class CatalogService {
         do {
             let (names, list) = try await Self.fetch()
             releases = list
-            macNames = names
+            if !names.isEmpty { self.names = names }
             failure = nil
             try? FileManager.default.createDirectory(at: cacheURL.deletingLastPathComponent(), withIntermediateDirectories: true)
-            try? JSONEncoder().encode(Cache(releases: list, macNames: names)).write(to: cacheURL)
+            try? JSONEncoder().encode(Cache(releases: list, names: self.names)).write(to: cacheURL)
         } catch {
             failure = error.localizedDescription
         }
     }
 
     func releases(for model: String) -> [Firmware] {
-        releases.filter { $0.models.contains(model) }
+        if DeviceKind(model: model).isMobile { return mobileReleases[model] ?? [] }
+        return releases.filter { $0.models.contains(model) }
     }
 
-    func firmware(build: String) -> Firmware? {
-        releases.first { $0.build == build }
+    /// Signed iOS or iPadOS images for one model, newest first.
+    func loadReleases(for model: String) async {
+        guard DeviceKind(model: model).isMobile, !loadingModels.contains(model) else { return }
+        loadingModels.insert(model)
+        defer { loadingModels.remove(model) }
+        do {
+            mobileReleases[model] = Self.merge(try await Self.fetchIPSWMe(model: model))
+            failure = nil
+        } catch {
+            failure = error.localizedDescription
+        }
+    }
+
+    /// The release a file on disk comes from, when Apple still signs it.
+    func firmware(for item: LibraryItem) -> Firmware? {
+        if item.kind.isMobile {
+            return mobileReleases.values.lazy.flatMap(\.self).first { $0.fileName == item.name }
+        }
+        return releases.first { $0.fileName == item.name } ?? releases.first { $0.build == item.build }
+    }
+
+    /// iPhone or iPad models, sorted by name.
+    func models(of kind: DeviceKind) -> [String] {
+        names.keys.filter { DeviceKind(prefixOf: $0) == kind }
+            .sorted { displayName(for: $0).localizedStandardCompare(displayName(for: $1)) == .orderedDescending }
     }
 
     func displayName(for model: String) -> String {
-        macNames[model] ?? model
+        names[model] ?? model
     }
 
     private struct Cache: Codable {
         let releases: [Firmware]
-        let macNames: [String: String]
+        let names: [String: String]
     }
 
     // MARK: Fetching
@@ -60,9 +88,9 @@ final class CatalogService {
     private nonisolated static func fetch() async throws -> ([String: String], [Firmware]) {
         do {
             let (data, _) = try await URLSession.shared.data(from: URL(string: "https://api.ipsw.me/v4/devices")!)
-            let names = macNames(from: try JSONDecoder().decode([DeviceDTO].self, from: data))
+            let names = deviceNames(from: try JSONDecoder().decode([DeviceDTO].self, from: data))
             let perModel = await withTaskGroup(of: [Firmware].self) { group in
-                var pending = names.keys.sorted()[...]
+                var pending = names.keys.filter { $0.hasPrefix("Mac") }.sorted()[...]
                 var results: [[Firmware]] = []
                 // A handful of requests at a time keeps ipsw.me happy; one
                 // failing model only loses that model's entries.
@@ -116,9 +144,13 @@ final class CatalogService {
         let firmwares: [Item]
     }
 
-    nonisolated static func macNames(from devices: [DeviceDTO]) -> [String: String] {
-        let macs = devices.filter { $0.identifier.hasPrefix("Mac") }
-        return Dictionary(macs.map { ($0.identifier, $0.name) }) { first, _ in first }
+    /// Macs, iPhones and iPads; iBridge and other accessories are left out.
+    nonisolated static func deviceNames(from devices: [DeviceDTO]) -> [String: String] {
+        let kept = devices.filter {
+            guard let kind = DeviceKind(prefixOf: $0.identifier) else { return false }
+            return kind != .t2
+        }
+        return Dictionary(kept.map { ($0.identifier, $0.name) }) { first, _ in first }
     }
 
     /// Only signed builds: Apple refuses to install the others.

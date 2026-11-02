@@ -40,7 +40,7 @@ enum Configurator {
         return output.compactMap { key, value -> TargetDevice? in
             guard let info = value as? [String: Any],
                   let model = info["deviceType"] as? String,
-                  model.hasPrefix("Mac") || model.hasPrefix("iBridge") else { return nil }
+                  DeviceKind(prefixOf: model) != nil else { return nil }
             return TargetDevice(ecid: (info["ECID"] as? String) ?? key, model: model,
                                 name: info["name"] as? String,
                                 location: (info["locationID"] as? NSNumber)?.stringValue)
@@ -64,7 +64,7 @@ enum Configurator {
     }
 }
 
-/// Watches for Macs connected in DFU mode.
+/// Watches for Macs, iPhones and iPads connected in DFU or recovery mode.
 @MainActor @Observable
 final class DeviceMonitor {
     private(set) var devices: [TargetDevice] = []

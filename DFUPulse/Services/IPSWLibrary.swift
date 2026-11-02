@@ -33,8 +33,11 @@ final class IPSWLibrary {
         }
     }
 
-    func item(build: String) -> LibraryItem? {
-        items.first { $0.build == build }
+    /// The file for a release. A macOS image may have been renamed on import;
+    /// iPhone and iPad images share builds, so only the name tells them apart.
+    func item(for firmware: Firmware) -> LibraryItem? {
+        items.first { $0.name == firmware.fileName }
+            ?? items.first { !$0.kind.isMobile && firmware.system == "macOS" && $0.build == firmware.build }
     }
 
     func setFolder(_ url: URL) {
