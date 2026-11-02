@@ -46,8 +46,10 @@ struct FlashView: View {
         Section {
             if model.monitor.devices.isEmpty {
                 VStack(alignment: .leading, spacing: 10) {
-                    AnimatedPulse().frame(height: 28)
-                    Text("Waiting for a Mac in DFU mode").font(.headline)
+                    HStack(spacing: 8) {
+                        ProgressView().controlSize(.small)
+                        Text("Waiting for a Mac in DFU mode").font(.headline)
+                    }
                     Text("Connect the two Macs with a USB-C cable that carries data, then put the other Mac into DFU.")
                         .foregroundStyle(.secondary)
                 }
