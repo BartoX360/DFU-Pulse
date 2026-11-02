@@ -261,6 +261,16 @@
         }
       }
     },
+    "Compatible with %lld Mac models": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compatible avec %lld modèles de Mac"
+          }
+        }
+      }
+    },
     "Connect the two Macs with a USB-C cable that carries data, then put the other Mac into DFU.": {
       "localizations": {
         "fr": {
@@ -917,6 +927,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Droite"
+          }
+        }
+      }
+    },
+    "Show compatible Macs": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher les Mac compatibles"
           }
         }
       }

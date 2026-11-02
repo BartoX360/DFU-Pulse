@@ -8,6 +8,7 @@ struct LibraryView: View {
     @State private var verifying: URL?
     @State private var results: [URL: Bool] = [:]
     @State private var errorMessage: String?
+    @State private var compatibility: Firmware?
 
     /// Releases grouped by major version, newest first.
     private var majors: [(String, [Firmware])] {
@@ -82,6 +83,9 @@ struct LibraryView: View {
                 }
             }
         }
+        .sheet(item: $compatibility) { release in
+            CompatibilityView(release: release)
+        }
         .onAppear { model.library.refresh() }
         .fileImporter(isPresented: $showImporter, allowedContentTypes: [.data], allowsMultipleSelection: true) { result in
             if case .success(let urls) = result { add(urls) }
@@ -142,10 +146,13 @@ struct LibraryView: View {
             }
         } label: {
             Text(verbatim: "macOS \(release.version)")
-            Text(verbatim: [release.build, release.size?.fileSize].compactMap(\.self).joined(separator: " · ")
-                 + " · " + String(localized: "\(release.models.count) Mac models"))
+            HStack(spacing: 4) {
+                Text(verbatim: [release.build, release.size?.fileSize].compactMap(\.self).joined(separator: " · ") + " ·")
+                Button("\(release.models.count) Mac models") { compatibility = release }
+                    .buttonStyle(.link)
+                    .help("Show compatible Macs")
+            }
         }
-        .help(release.models.sorted().map(model.catalog.displayName(for:)).joined(separator: "\n"))
     }
 
     private func add(_ urls: [URL]) {
