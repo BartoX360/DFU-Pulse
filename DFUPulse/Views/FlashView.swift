@@ -156,16 +156,13 @@ struct FlashView: View {
                 }
             }
             if let local = model.library.item(for: firmware) {
-                // cfgutil unpacks the whole image first, plus some working room.
-                let needed = local.size + (2 << 30)
-                let free = Configurator.freeSpaceForRestore
-                let tooFull = free.map { $0 < needed } ?? false
-                if let free, tooFull {
-                    Label("Not enough free space: Apple Configurator unpacks the image before installing it. Free up \((needed - free).fileSize) on this Mac.",
+                if let missing = Configurator.missingSpace(for: local.url) {
+                    Label("Not enough free space: Apple Configurator unpacks the image before installing it. Free up \(missing.fileSize) on this Mac.",
                           systemImage: "externaldrive.badge.exclamationmark")
                         .foregroundStyle(.orange)
+                } else {
+                    restoreButton(target, ipsw: local.url)
                 }
-                restoreButton(target, ipsw: local.url, blocked: tooFull)
             } else {
                 LabeledContent {
                     DownloadControl(firmware: firmware)
@@ -183,12 +180,12 @@ struct FlashView: View {
         }
     }
 
-    private func restoreButton(_ target: TargetDevice, ipsw: URL?, blocked: Bool = false) -> some View {
+    private func restoreButton(_ target: TargetDevice, ipsw: URL?) -> some View {
         HStack {
             Spacer()
             Button("Erase and restore", role: .destructive) { confirming = true }
                 .buttonStyle(.glassProminent).tint(.red)
-                .disabled(!Configurator.isInstalled || blocked)
+                .disabled(!Configurator.isInstalled)
         }
         .confirmationDialog("Erase this device?", isPresented: $confirming) {
             Button("Erase and restore", role: .destructive) {

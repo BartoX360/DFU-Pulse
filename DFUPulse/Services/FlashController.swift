@@ -21,9 +21,16 @@ final class FlashController {
 
     func start(mode: RestoreMode, target: TargetDevice, ipsw: URL?) {
         guard !isRunning else { return }
-        state = .running
         progress = nil
         log = []
+        // Checked here too, whatever the screen allowed: cfgutil would fail
+        // halfway, after erasing the target.
+        if mode == .restore, let ipsw, let missing = Configurator.missingSpace(for: ipsw) {
+            log.append(String(localized: "Not enough free space: Apple Configurator unpacks the image before installing it. Free up \(missing.fileSize) on this Mac."))
+            state = .failed(-1)
+            return
+        }
+        state = .running
 
         let process = Process()
         process.executableURL = URL(filePath: Configurator.toolPath)

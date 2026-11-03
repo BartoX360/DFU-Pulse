@@ -39,6 +39,21 @@ import Testing
         #expect(flash.log.first == "args: --progress -e 0x1 restore -I /tmp/x.ipsw")
     }
 
+    @Test func refusesRestoreWithoutRoom() throws {
+        // A sparse file bigger than the free space: no disk is actually used.
+        let ipsw = URL.temporaryDirectory.appending(path: "huge-\(UUID().uuidString).ipsw")
+        FileManager.default.createFile(atPath: ipsw.path, contents: nil)
+        defer { try? FileManager.default.removeItem(at: ipsw) }
+        let handle = try FileHandle(forWritingTo: ipsw)
+        try handle.truncate(atOffset: UInt64(Configurator.freeSpaceForRestore ?? 0) + (8 << 30))
+        try handle.close()
+        let flash = FlashController()
+        let target = TargetDevice(ecid: "0x1", model: "Mac14,2", name: nil, location: nil)
+        flash.start(mode: .restore, target: target, ipsw: ipsw)
+        #expect(flash.state == .failed(-1))
+        #expect(Configurator.missingSpace(for: ipsw) != nil)
+    }
+
     @Test func reportsFailure() async throws {
         let tool = try fakeTool(exitCode: 3)
         defer { try? FileManager.default.removeItem(at: tool) }

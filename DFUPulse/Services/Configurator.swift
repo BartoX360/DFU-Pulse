@@ -70,10 +70,25 @@ enum Configurator {
     }
 
     /// Room left on the volume where cfgutil unpacks the image before
-    /// installing it: about as much again as the IPSW itself.
+    /// installing it. The smaller of the two figures: purgeable space only
+    /// counts if macOS frees it, and cfgutil does not ask it to.
     static var freeSpaceForRestore: Int64? {
-        let values = try? URL.temporaryDirectory.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
-        return values?.volumeAvailableCapacityForImportantUsage
+        let values = try? URL.temporaryDirectory.resourceValues(
+            forKeys: [.volumeAvailableCapacityKey, .volumeAvailableCapacityForImportantUsageKey])
+        let figures = [values?.volumeAvailableCapacity.map(Int64.init), values?.volumeAvailableCapacityForImportantUsage]
+        return figures.compactMap(\.self).min()
+    }
+
+    /// cfgutil unpacks the whole image, plus some working room.
+    static func spaceNeeded(for ipsw: URL) -> Int64? {
+        let size = try? ipsw.resourceValues(forKeys: [.fileSizeKey]).fileSize
+        return size.map { Int64($0) + (2 << 30) }
+    }
+
+    /// How much is missing to restore with this image, or nil when it fits.
+    static func missingSpace(for ipsw: URL) -> Int64? {
+        guard let needed = spaceNeeded(for: ipsw), let free = freeSpaceForRestore, free < needed else { return nil }
+        return needed - free
     }
 
     /// Finds the last percentage in a line of cfgutil output.
