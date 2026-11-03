@@ -56,6 +56,26 @@ enum Configurator {
         return arguments
     }
 
+    /// cfgutil prints each progress step twice: as a property list dump
+    /// ("Step = \"\\U00c9tape…\";") and as a readable line. Keeps the readable
+    /// one, without the braces glued to it.
+    static func logLine(_ raw: String) -> String? {
+        var line = raw.trimmingCharacters(in: .whitespaces)
+        while let first = line.first, "{}".contains(first) { line.removeFirst() }
+        line = line.trimmingCharacters(in: .whitespaces)
+        if line.isEmpty || line.wholeMatch(of: /(Progress|Step|Type) = .*;/) != nil { return nil }
+        return line.replacing(/\\U([0-9a-fA-F]{4})/) { match in
+            UInt32(match.1, radix: 16).flatMap(Unicode.Scalar.init).map { String(Character($0)) } ?? String(match.0)
+        }
+    }
+
+    /// Room left on the volume where cfgutil unpacks the image before
+    /// installing it: about as much again as the IPSW itself.
+    static var freeSpaceForRestore: Int64? {
+        let values = try? URL.temporaryDirectory.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
+        return values?.volumeAvailableCapacityForImportantUsage
+    }
+
     /// Finds the last percentage in a line of cfgutil output.
     static func progress(in line: String) -> Double? {
         guard let match = line.matches(of: /(\d{1,3}(?:\.\d+)?)\s*%/).last,

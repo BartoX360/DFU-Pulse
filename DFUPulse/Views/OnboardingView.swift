@@ -1,4 +1,5 @@
 import AppKit
+import ServiceManagement
 import SwiftUI
 
 /// Shown on first launch, and from Help → Welcome to DFU Pulse.
@@ -8,7 +9,6 @@ struct OnboardingView: View {
     @State private var page = 0
     @State private var configuratorInstalled = Configurator.isInstalled
     @State private var access = DFUEntry.access
-    @State private var working = false
     @State private var errorMessage: String?
 
     private let pageCount = 4
@@ -40,7 +40,7 @@ struct OnboardingView: View {
                     Button("Back") { page -= 1 }
                 }
                 if page < pageCount - 1 {
-                    Button(page == 2 && access != .passwordless ? "Later" : "Continue") { page += 1 }
+                    Button(page == 2 && access != .helper ? "Later" : "Continue") { page += 1 }
                         .buttonStyle(.glassProminent)
                         .keyboardShortcut(.defaultAction)
                 } else {
@@ -55,6 +55,7 @@ struct OnboardingView: View {
         .animation(.smooth, value: page)
         .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
             configuratorInstalled = Configurator.isInstalled
+            access = DFUEntry.access
         }
     }
 
@@ -92,23 +93,22 @@ struct OnboardingView: View {
 
     private var password: some View {
         step(symbol: "lock.open", title: "Enter DFU without a password",
-             text: "To put the other Mac into DFU for you, DFU Pulse needs administrator rights. Enter your password once now, and it will never be asked again for this.") {
-            VStack(alignment: .leading, spacing: 8) {
-                Text("This installs a copy of macvdmtool owned by root and a sudo rule that lets your account run only “macvdmtool dfu”. Nothing runs in the background, and you can remove it in Settings.")
-                    .font(.callout).foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
+             text: "To put the other Mac into DFU for you, DFU Pulse needs administrator rights. Switch its helper on once, and no password will be asked again for this.") {
+            Text("macOS lists the helper in System Settings › General › Login Items & Extensions. It only answers DFU Pulse, only puts a Mac into DFU, and you can switch it off there or in Settings.")
+                .font(.callout).foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
             switch access {
-            case .passwordless:
+            case .helper:
                 Label("Done: no password will be asked.", systemImage: "checkmark.circle.fill")
                     .foregroundStyle(.green)
-            case .askEveryTime, .outdated:
-                HStack {
-                    Button("Allow without password") { install() }
-                        .buttonStyle(.glass)
-                        .disabled(working)
-                    if working { ProgressView().controlSize(.small) }
-                }
+            case .needsApproval:
+                Button("Open System Settings") { SMAppService.openSystemSettingsLoginItems() }
+                    .buttonStyle(.glass)
+                Text("Turn on DFU Pulse under “Allow in the Background”, then come back here.")
+                    .font(.callout).foregroundStyle(.secondary)
+            case .askEveryTime:
+                Button("Enable the helper") { enable() }
+                    .buttonStyle(.glass)
                 Text("You can also skip this: macOS will then ask for the password each time.")
                     .font(.callout).foregroundStyle(.secondary)
             }
@@ -153,20 +153,13 @@ struct OnboardingView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private func install() {
-        working = true
+    private func enable() {
         errorMessage = nil
-        Task {
-            defer {
-                working = false
-                access = DFUEntry.access
-            }
-            do {
-                try await DFUEntry.installPasswordless()
-            } catch DFUEntry.Failure.cancelled {
-            } catch {
-                errorMessage = error.localizedDescription
-            }
+        do {
+            try DFUEntry.enableHelper()
+        } catch {
+            errorMessage = error.localizedDescription
         }
+        access = DFUEntry.access
     }
 }

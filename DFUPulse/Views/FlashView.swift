@@ -88,7 +88,7 @@ struct FlashView: View {
         } footer: {
             if model.monitor.devices.isEmpty {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(DFUEntry.access == .passwordless
+                    Text(DFUEntry.access == .helper
                          ? "Automatic entry needs both Macs on Apple silicon, joined by their DFU ports."
                          : "Automatic entry needs both Macs on Apple silicon, joined by their DFU ports, and an administrator password. You can skip the password in Settings.")
                     Text("iPhones and iPads enter DFU with their buttons only.")
@@ -156,6 +156,13 @@ struct FlashView: View {
                 }
             }
             if let local = model.library.item(for: firmware) {
+                // cfgutil unpacks the whole image first, plus some working room.
+                let needed = local.size + (2 << 30)
+                if let free = Configurator.freeSpaceForRestore, free < needed {
+                    Label("Not enough free space: Apple Configurator unpacks the image before installing it. Free up \((needed - free).fileSize) on this Mac.",
+                          systemImage: "externaldrive.badge.exclamationmark")
+                        .foregroundStyle(.orange)
+                }
                 restoreButton(target, ipsw: local.url)
             } else {
                 LabeledContent {

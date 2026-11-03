@@ -8,20 +8,34 @@ settings:
   base:
     SWIFT_VERSION: "6.0"
     ARCHS: arm64
-    MARKETING_VERSION: "0.4.0"
-    CURRENT_PROJECT_VERSION: "6"
-    CODE_SIGN_IDENTITY: "-"
+    MARKETING_VERSION: "0.5.0"
+    CURRENT_PROJECT_VERSION: "7"
     CODE_SIGN_STYLE: Manual
-    DEVELOPMENT_TEAM: ""
-    ENABLE_HARDENED_RUNTIME: NO
+    DEVELOPMENT_TEAM: 6LKS98VG4F
+    CODE_SIGN_IDENTITY: "Apple Development"
+    ENABLE_HARDENED_RUNTIME: YES
+  configs:
+    Release:
+      CODE_SIGN_IDENTITY: "Developer ID Application"
+      OTHER_CODE_SIGN_FLAGS: "--timestamp"
 targets:
   DFUPulse:
     type: application
     platform: macOS
     sources:
       - DFUPulse
+      - Shared
+      - path: Helper/fr.bartox.DFUPulse.helper.plist
+        buildPhase:
+          copyFiles:
+            destination: wrapper
+            subpath: Contents/Library/LaunchDaemons
     dependencies:
       - target: macvdmtool
+        embed: true
+        copy:
+          destination: executables
+      - target: DFUPulseHelper
         embed: true
         copy:
           destination: executables
@@ -36,6 +50,13 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         LOCALIZATION_PREFERS_STRING_CATALOGS: YES
         SWIFT_EMIT_LOC_STRINGS: YES
+  DFUPulseHelper:
+    type: tool
+    platform: macOS
+    sources:
+      - path: Helper
+        excludes: ["*.plist"]
+      - Shared
   macvdmtool:
     type: tool
     platform: macOS

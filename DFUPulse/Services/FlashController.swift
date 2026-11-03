@@ -73,8 +73,7 @@ final class FlashController {
 
     private func append(_ text: String) {
         for line in text.split(whereSeparator: \.isNewline) {
-            let line = String(line).trimmingCharacters(in: .whitespaces)
-            guard !line.isEmpty else { continue }
+            guard let line = Configurator.logLine(String(line)) else { continue }
             if let value = Configurator.progress(in: line) { progress = value }
             log.append(line)
         }

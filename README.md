@@ -25,21 +25,13 @@ A free, open-source macOS app to revive or restore a Mac, iPhone or iPad in DFU 
 
 ## Install
 
-1. Download the latest `DFU-Pulse-x.y.z.dmg` from [Releases](https://github.com/BartoX360/DFU-Pulse/releases) and drag **DFU Pulse** to Applications.
-2. Open it once. macOS blocks it because the app is not notarized by Apple (that requires a paid developer account).
-3. Open **System Settings → Privacy & Security**, scroll down, and click **Open Anyway** next to DFU Pulse.
-
-Or, in Terminal:
-
-```sh
-xattr -dr com.apple.quarantine "/Applications/DFU Pulse.app"
-```
+Download the latest `DFU-Pulse-x.y.z.dmg` from [Releases](https://github.com/BartoX360/DFU-Pulse/releases) and drag **DFU Pulse** to Applications. The app is signed with a Developer ID and notarized by Apple, so it opens like any other.
 
 ## Where things come from
 
 - Firmware list: [ipsw.me](https://ipsw.me) for the full history and SHA-256 checksums, falling back to Apple's own feed. Files are only ever downloaded from Apple's servers: any other host is refused.
 - IPSW files are stored in `~/Library/Application Support/DFU Pulse/IPSW` (configurable). Interrupted downloads resume.
-- Automatic DFU entry uses [macvdmtool](https://github.com/AsahiLinux/macvdmtool) by the Asahi Linux contributors (Apache-2.0), bundled in `Vendor/`. It needs root, so macOS asks for an administrator password each time, unless you choose **Settings → Allow without password**: that installs, once, a root-owned copy of the tool and a sudo rule allowing only `macvdmtool dfu` for your account. Remove it from the same place.
+- Automatic DFU entry uses [macvdmtool](https://github.com/AsahiLinux/macvdmtool) by the Asahi Linux contributors (Apache-2.0), bundled in `Vendor/`. It needs root, so macOS asks for an administrator password each time, unless you enable the helper in **Settings**: a small daemon inside the app, registered with `SMAppService` and switched on once in **System Settings → General → Login Items & Extensions**. launchd starts it on demand; it only accepts connections from DFU Pulse signed by the same team, checks the signature of `macvdmtool` before running it, and does nothing but `macvdmtool dfu`.
 
 ## Build
 
@@ -49,7 +41,7 @@ xcodegen generate
 open DFUPulse.xcodeproj
 ```
 
-`scripts/package.sh` builds a DMG. Pushing a `v*` tag publishes a release through GitHub Actions.
+`scripts/package.sh` builds a DMG signed with the Developer ID certificate and has it notarized; `--publish` also creates the GitHub release. GitHub Actions runs the tests on each push.
 
 ## License
 

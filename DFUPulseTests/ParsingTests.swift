@@ -99,6 +99,13 @@ import Testing
             == ["--progress", "-e", "0x1", "revive"])
     }
 
+    @Test func cleansCfgutilLog() {
+        #expect(Configurator.logLine(#"Step = "\U00c9tape\U00a02 sur 2";"#) == nil)
+        #expect(Configurator.logLine("}{") == nil)
+        #expect(Configurator.logLine("}Étape 2 sur 2 : Installation [2/2] 50%") == "Étape 2 sur 2 : Installation [2/2] 50%")
+        #expect(Configurator.logLine(#"cfgutil: \U00e9chec"#) == "cfgutil: échec")
+    }
+
     @Test func readsProgress() {
         #expect(Configurator.progress(in: "Restoring 42.5%") == 0.425)
         #expect(Configurator.progress(in: "Waiting") == nil)

@@ -1,12 +1,13 @@
-import CryptoKit
 import Foundation
+import ServiceManagement
 
 /// Puts a connected Mac into DFU mode over USB-C with the bundled macvdmtool,
 /// which needs root.
 ///
-/// By default macOS asks for an administrator password every time. The user
-/// can instead install, once, a root-owned copy of the tool and a sudoers rule
-/// that allows exactly `macvdmtool dfu` for their account, and nothing else.
+/// Without setup, macOS asks for an administrator password every time. The
+/// user can instead enable, once, a helper that launchd runs as root on
+/// demand (SMAppService). The helper only accepts DFU Pulse, signed by the
+/// same team, and only runs `macvdmtool dfu`.
 enum DFUEntry {
     enum Failure: LocalizedError {
         case missingTool
@@ -24,65 +25,106 @@ enum DFUEntry {
 
     enum Access: Equatable {
         case askEveryTime
-        case passwordless
-        /// Installed from an older version of the app.
-        case outdated
+        /// Registered, waiting for the switch in System Settings.
+        case needsApproval
+        case helper
     }
 
-    static let installedTool = "/usr/local/libexec/dfupulse/macvdmtool"
-    static let sudoersFile = "/etc/sudoers.d/dfupulse"
+    /// Left by versions up to 0.4: a root copy of macvdmtool and a sudo rule.
+    static let legacyTool = "/usr/local/libexec/dfupulse/macvdmtool"
+    static let legacySudoers = "/etc/sudoers.d/dfupulse"
+
+    static var hasLegacySetup: Bool {
+        FileManager.default.fileExists(atPath: legacyTool)
+    }
+
+    private static var service: SMAppService {
+        .daemon(plistName: HelperIdentity.plistName)
+    }
 
     static var bundledTool: URL? {
         Bundle.main.url(forAuxiliaryExecutable: "macvdmtool")
     }
 
     static var access: Access {
-        let files = FileManager.default
-        // sudoers.d is unreadable without root: its presence is enough.
-        guard files.fileExists(atPath: installedTool), files.fileExists(atPath: sudoersFile) else {
-            return .askEveryTime
+        switch service.status {
+        case .enabled: .helper
+        case .requiresApproval: .needsApproval
+        default: .askEveryTime
         }
-        guard let bundled = bundledTool, digest(of: bundled) == digest(of: URL(filePath: installedTool)) else {
-            return .outdated
-        }
-        return .passwordless
     }
 
     static func run() async throws {
-        if access == .passwordless {
-            try await execute("/usr/bin/sudo", ["-n", installedTool, "dfu"])
+        if access == .helper {
+            try await callHelper()
         } else {
             guard let tool = bundledTool else { throw Failure.missingTool }
             try await asAdministrator("quoted form of item 1 of argv & \" dfu\"", [tool.path(percentEncoded: false)])
         }
     }
 
-    static func installPasswordless() async throws {
-        guard let tool = bundledTool else { throw Failure.missingTool }
-        let user = NSUserName()
-        // The name goes into a sudoers rule: refuse anything unusual.
-        guard user.wholeMatch(of: /[A-Za-z0-9._-]+/) != nil else {
-            throw Failure.failed(String(localized: "Unsupported account name."))
+    /// Registers the helper. macOS then lists it in Login Items & Extensions,
+    /// where the user switches it on once.
+    static func enableHelper() throws {
+        do {
+            try service.register()
+        } catch {
+            // Already registered but not yet approved: just show the switch.
+            guard service.status == .requiresApproval else { throw Failure.failed(error.localizedDescription) }
         }
-        let rule = "\(user) ALL=(root) NOPASSWD: \(installedTool) dfu\n"
-        let directory = (installedTool as NSString).deletingLastPathComponent
-        // AppleScript pieces; the rule is checked by visudo before it goes live.
-        let script = [
-            #""set -e; d=$(mktemp -d); trap 'rm -rf \"$d\"' EXIT; mkdir -p ""#,
-            "quoted form of item 3 of argv",
-            #""; install -o root -g wheel -m 755 ""#,
-            "quoted form of item 1 of argv", #"" ""#, "quoted form of item 4 of argv",
-            #""; printf %s ""#, "quoted form of item 2 of argv",
-            #"" > \"$d/rule\"; visudo -cf \"$d/rule\" >/dev/null; install -o root -g wheel -m 440 \"$d/rule\" ""#,
-            "quoted form of item 5 of argv",
-        ].joined(separator: " & ")
-        try await asAdministrator(script, [tool.path(percentEncoded: false), rule, directory, installedTool, sudoersFile])
+        if service.status == .requiresApproval {
+            SMAppService.openSystemSettingsLoginItems()
+        }
     }
 
-    static func removePasswordless() async throws {
-        let directory = (installedTool as NSString).deletingLastPathComponent
+    static func disableHelper() async throws {
+        try await service.unregister()
+    }
+
+    static func removeLegacySetup() async throws {
+        let directory = (legacyTool as NSString).deletingLastPathComponent
         try await asAdministrator("\"rm -f \" & quoted form of item 1 of argv & \"; rm -rf \" & quoted form of item 2 of argv",
-                                  [sudoersFile, directory])
+                                  [legacySudoers, directory])
+    }
+
+    private static func callHelper() async throws {
+        let connection = NSXPCConnection(machServiceName: HelperIdentity.machService, options: .privileged)
+        connection.remoteObjectInterface = NSXPCInterface(with: DFUHelperProtocol.self)
+        connection.setCodeSigningRequirement(HelperIdentity.requirement(identifier: "DFUPulseHelper"))
+        connection.resume()
+        defer { connection.invalidate() }
+        let (status, output) = try await withCheckedThrowingContinuation { continuation in
+            let once = Once(continuation)
+            let proxy = connection.remoteObjectProxyWithErrorHandler { once.resume(throwing: $0) }
+            guard let helper = proxy as? DFUHelperProtocol else {
+                once.resume(throwing: Failure.failed(String(localized: "The helper did not answer.")))
+                return
+            }
+            helper.enterDFU { status, output in once.resume(returning: (status, output)) }
+        }
+        guard status == 0 else {
+            throw Failure.failed(output.trimmingCharacters(in: .whitespacesAndNewlines))
+        }
+    }
+
+    /// XPC may call both the reply and the error handler; resume only once.
+    private final class Once: @unchecked Sendable {
+        private var continuation: CheckedContinuation<(Int32, String), Error>?
+        private let lock = NSLock()
+
+        init(_ continuation: CheckedContinuation<(Int32, String), Error>) {
+            self.continuation = continuation
+        }
+
+        private func take() -> CheckedContinuation<(Int32, String), Error>? {
+            lock.withLock {
+                defer { continuation = nil }
+                return continuation
+            }
+        }
+
+        func resume(returning value: (Int32, String)) { take()?.resume(returning: value) }
+        func resume(throwing error: Error) { take()?.resume(throwing: error) }
     }
 
     /// Runs a shell command built in AppleScript from `argv`, so paths and
@@ -111,9 +153,5 @@ enum DFUEntry {
                 throw output.contains("-128") ? Failure.cancelled : Failure.failed(output)
             }
         }.value
-    }
-
-    private static func digest(of url: URL) -> SHA256.Digest? {
-        (try? Data(contentsOf: url)).map(SHA256.hash(data:))
     }
 }

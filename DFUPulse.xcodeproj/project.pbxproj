@@ -10,14 +10,18 @@
 		07DD4802B4FD4B49C8F142A3 /* CompatibilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6C326194AC48331F0526FB /* CompatibilityView.swift */; };
 		0A4DB6974A2FE88E8428F20A /* FlashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D1DB44341D46437A331913 /* FlashView.swift */; };
 		0B1D5709836FE3EAFD6BCE93 /* macvdmtool in Embed Dependencies */ = {isa = PBXBuildFile; fileRef = 85C6C146BD89E5E0BCB20C8E /* macvdmtool */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		10C7EE3D12AC2C36476F5725 /* fr.bartox.DFUPulse.helper.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7473D2F9BEEA157F2AAC4CC /* fr.bartox.DFUPulse.helper.plist */; };
 		1D5E435BC1CAF1026FA4E49D /* FlashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7949E1EEF20F8290705B48C /* FlashController.swift */; };
 		267C13BAA1A519D7A2EE995F /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445D87934463A8EE60E1D66 /* Configurator.swift */; };
 		2D4331C82A274F5B769F44BA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A316FFAFC0C1C97CF38BD94 /* main.cpp */; };
 		2EBF7950EC66EE1266C255B3 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A6EDDF870CF96D0808A262 /* Components.swift */; };
 		31B27CE83A658EDCF770A940 /* FlashControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB529FE85F6B571DEA1CECF1 /* FlashControllerTests.swift */; };
+		34A73F1EFA2E2466D63BF259 /* HelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B37B40D15DAC637975DA65 /* HelperProtocol.swift */; };
+		39F5317C08BFDA07DAFC3EB9 /* HelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B37B40D15DAC637975DA65 /* HelperProtocol.swift */; };
 		4AACE0D5E1ED4F5C5DBEBC63 /* IPSWLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D93FA458603412EBC8F2D1 /* IPSWLibrary.swift */; };
 		61BE2C85A2AB136E8847BB77 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81466E15DC7C594177B8F311 /* Models.swift */; };
 		8367B7D879BC9E8763278FBD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7609869635F6E5755BCBC9E /* SettingsView.swift */; };
+		9456E542C27815597A65F3C7 /* DFUPulseHelper in Embed Dependencies */ = {isa = PBXBuildFile; fileRef = EED90D7CC365E9FEEEE83D74 /* DFUPulseHelper */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9CD3F1F31DEDF255E4F9AB47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BA6FD557C9C383833867316 /* Assets.xcassets */; };
 		9E13AC845DC7444115FCF610 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 937C41586605F34F08F7BBC5 /* Localizable.xcstrings */; };
 		A80F13C55C3E7AE8615D0C54 /* PortGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8A3A0D1AC7A1FE1A95636C /* PortGuide.swift */; };
@@ -28,6 +32,7 @@
 		E715938D60E0398E671B3A18 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2066FBBBBF93F4D4244B1F7 /* DownloadManager.swift */; };
 		E8C87CF606723CF7025CEC6A /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09DB5826A6FE7C586AFDFBC /* LibraryView.swift */; };
 		E8F8427FEB9CAB70709FE32B /* DFUEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8A8BB7A9A612B6E5C71AF8 /* DFUEntry.swift */; };
+		F0E2D6F4A7A139E159498583 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12C6C8295F136E343B0DC2B /* main.swift */; };
 		F3749D15F164451D5BCF77EC /* CatalogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3513D1A50FE3951EA19870 /* CatalogService.swift */; };
 		F9A6AE979BC3598C63C2BDD0 /* DFUPulseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0ED5F1BDEF9F752EE6FB1 /* DFUPulseApp.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +45,13 @@
 			remoteGlobalIDString = 71AF729C320796D833148F50;
 			remoteInfo = DFUPulse;
 		};
+		2A93E0D49F755B5F6248F4BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4FABCE7696111BF2EFCC5FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0FAE87C5051B67B72C4C7A3A;
+			remoteInfo = DFUPulseHelper;
+		};
 		53C6F5AE00C4A5415A8FFEB3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F4FABCE7696111BF2EFCC5FD /* Project object */;
@@ -50,6 +62,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		09E84CFFED944C6F6E0FFDE9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LaunchDaemons;
+			dstSubfolderSpec = 1;
+			files = (
+				10C7EE3D12AC2C36476F5725 /* fr.bartox.DFUPulse.helper.plist in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0E5ECFEC199AE6DEAC3A64D1 /* Embed Dependencies */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,6 +79,7 @@
 			dstSubfolderSpec = 6;
 			files = (
 				0B1D5709836FE3EAFD6BCE93 /* macvdmtool in Embed Dependencies */,
+				9456E542C27815597A65F3C7 /* DFUPulseHelper in Embed Dependencies */,
 			);
 			name = "Embed Dependencies";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +97,7 @@
 		3E3513D1A50FE3951EA19870 /* CatalogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogService.swift; sourceTree = "<group>"; };
 		42D1DB44341D46437A331913 /* FlashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashView.swift; sourceTree = "<group>"; };
 		46EDE979ED3B18E4AD1FC12A /* AppleHPMLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppleHPMLib.h; sourceTree = "<group>"; };
+		52B37B40D15DAC637975DA65 /* HelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperProtocol.swift; sourceTree = "<group>"; };
 		81466E15DC7C594177B8F311 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		85C6C146BD89E5E0BCB20C8E /* macvdmtool */ = {isa = PBXFileReference; includeInIndex = 0; path = macvdmtool; sourceTree = BUILT_PRODUCTS_DIR; };
 		9269FE6D8997EACE0271DAD5 /* ParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingTests.swift; sourceTree = "<group>"; };
@@ -88,12 +112,24 @@
 		D7609869635F6E5755BCBC9E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D884DF12445A51F9C9297043 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		E09DB5826A6FE7C586AFDFBC /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		E12C6C8295F136E343B0DC2B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E5930E58DA575C7614E60840 /* ssops.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ssops.h; sourceTree = "<group>"; };
+		EED90D7CC365E9FEEEE83D74 /* DFUPulseHelper */ = {isa = PBXFileReference; includeInIndex = 0; path = DFUPulseHelper; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4548D424D60F3757E85BC1E /* DFUPulseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DFUPulseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7473D2F9BEEA157F2AAC4CC /* fr.bartox.DFUPulse.helper.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = fr.bartox.DFUPulse.helper.plist; sourceTree = "<group>"; };
 		F7A6EDDF870CF96D0808A262 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		033B359D9EDE64FD2AFCC252 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				F7473D2F9BEEA157F2AAC4CC /* fr.bartox.DFUPulse.helper.plist */,
+				E12C6C8295F136E343B0DC2B /* main.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		075440C12C7B664F344C97C2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,7 +144,9 @@
 			children = (
 				5B45EFE0BCC09BC07FE6335C /* DFUPulse */,
 				8C653609E225EB4115810DDC /* DFUPulseTests */,
+				033B359D9EDE64FD2AFCC252 /* Helper */,
 				1007BA39195161712EB8C24F /* macvdmtool */,
+				883694A4CD38BC33BA405F72 /* Shared */,
 				B6D254AFC12B8AB4C9EEA771 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -149,6 +187,14 @@
 			path = DFUPulse;
 			sourceTree = "<group>";
 		};
+		883694A4CD38BC33BA405F72 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				52B37B40D15DAC637975DA65 /* HelperProtocol.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		8C653609E225EB4115810DDC /* DFUPulseTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				3D030D0BDEA5FF1DC3D625D1 /* DFUPulse.app */,
+				EED90D7CC365E9FEEEE83D74 /* DFUPulseHelper */,
 				F4548D424D60F3757E85BC1E /* DFUPulseTests.xctest */,
 				85C6C146BD89E5E0BCB20C8E /* macvdmtool */,
 			);
@@ -203,6 +250,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0FAE87C5051B67B72C4C7A3A /* DFUPulseHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 522EA6C630D7CE5432422B5B /* Build configuration list for PBXNativeTarget "DFUPulseHelper" */;
+			buildPhases = (
+				4BF1B83B03D345F252EB1700 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DFUPulseHelper;
+			packageProductDependencies = (
+			);
+			productName = DFUPulseHelper;
+			productReference = EED90D7CC365E9FEEEE83D74 /* DFUPulseHelper */;
+			productType = "com.apple.product-type.tool";
+		};
 		1A60A1276E3BA0D0A27D80A3 /* DFUPulseTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 64398D07574C434398850D96 /* Build configuration list for PBXNativeTarget "DFUPulseTests" */;
@@ -227,12 +291,14 @@
 			buildPhases = (
 				493198C0559A9C735DD65C86 /* Sources */,
 				23EF8577961F1042F92A9EDB /* Resources */,
+				09E84CFFED944C6F6E0FFDE9 /* CopyFiles */,
 				0E5ECFEC199AE6DEAC3A64D1 /* Embed Dependencies */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				EFDDCF66F6E416DEE6840458 /* PBXTargetDependency */,
+				13BE2C678C25205FBD03560F /* PBXTargetDependency */,
 			);
 			name = DFUPulse;
 			packageProductDependencies = (
@@ -267,16 +333,20 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					0FAE87C5051B67B72C4C7A3A = {
+						DevelopmentTeam = 6LKS98VG4F;
+						ProvisioningStyle = Manual;
+					};
 					1A60A1276E3BA0D0A27D80A3 = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = 6LKS98VG4F;
 						ProvisioningStyle = Manual;
 					};
 					71AF729C320796D833148F50 = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = 6LKS98VG4F;
 						ProvisioningStyle = Manual;
 					};
 					911B02B26C70D1E45E3E5996 = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = 6LKS98VG4F;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -297,6 +367,7 @@
 			projectRoot = "";
 			targets = (
 				71AF729C320796D833148F50 /* DFUPulse */,
+				0FAE87C5051B67B72C4C7A3A /* DFUPulseHelper */,
 				911B02B26C70D1E45E3E5996 /* macvdmtool */,
 				1A60A1276E3BA0D0A27D80A3 /* DFUPulseTests */,
 			);
@@ -340,12 +411,22 @@
 				1D5E435BC1CAF1026FA4E49D /* FlashController.swift in Sources */,
 				0A4DB6974A2FE88E8428F20A /* FlashView.swift in Sources */,
 				BE758EA1B3DD62D9FB421202 /* GuideView.swift in Sources */,
+				34A73F1EFA2E2466D63BF259 /* HelperProtocol.swift in Sources */,
 				4AACE0D5E1ED4F5C5DBEBC63 /* IPSWLibrary.swift in Sources */,
 				E8C87CF606723CF7025CEC6A /* LibraryView.swift in Sources */,
 				61BE2C85A2AB136E8847BB77 /* Models.swift in Sources */,
 				C7A0ED64D40892302117DC19 /* OnboardingView.swift in Sources */,
 				A80F13C55C3E7AE8615D0C54 /* PortGuide.swift in Sources */,
 				8367B7D879BC9E8763278FBD /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BF1B83B03D345F252EB1700 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39F5317C08BFDA07DAFC3EB9 /* HelperProtocol.swift in Sources */,
+				F0E2D6F4A7A139E159498583 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +441,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		13BE2C678C25205FBD03560F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0FAE87C5051B67B72C4C7A3A /* DFUPulseHelper */;
+			targetProxy = 2A93E0D49F755B5F6248F4BC /* PBXContainerItemProxy */;
+		};
 		CC3AAC8A31ED4F8A3DFD7A4B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 71AF729C320796D833148F50 /* DFUPulse */;
@@ -407,13 +493,13 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
-				ENABLE_HARDENED_RUNTIME = NO;
+				DEVELOPMENT_TEAM = 6LKS98VG4F;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -431,7 +517,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 0.4.0;
+				MARKETING_VERSION = 0.5.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -477,13 +563,13 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				ENABLE_HARDENED_RUNTIME = NO;
+				DEVELOPMENT_TEAM = 6LKS98VG4F;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -495,14 +581,41 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 0.4.0;
+				MARKETING_VERSION = 0.5.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_CODE_SIGN_FLAGS = "--timestamp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		281B7CBFB0901B70C9AC3B39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fr.bartox.DFUPulseHelper;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		4993D48EB22BB1175CDA8FF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fr.bartox.DFUPulseHelper;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -632,6 +745,15 @@
 			buildConfigurations = (
 				69970A5F8DFDF9B6AEDDFBDE /* Debug */,
 				68C7748000C226E689ADD27D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		522EA6C630D7CE5432422B5B /* Build configuration list for PBXNativeTarget "DFUPulseHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				281B7CBFB0901B70C9AC3B39 /* Debug */,
+				4993D48EB22BB1175CDA8FF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

@@ -81,16 +81,6 @@
         }
       }
     },
-    "Allow without password": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Autoriser sans mot de passe"
-          }
-        }
-      }
-    },
     "Apple Configurator is installed": {
       "localizations": {
         "fr": {
@@ -137,16 +127,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Demande un mot de passe"
-          }
-        }
-      }
-    },
-    "Asks for your administrator password once, then installs a copy of macvdmtool owned by root and a sudo rule that lets your account run only “macvdmtool dfu” without a password. Nothing runs in the background.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Demande une seule fois votre mot de passe administrateur, puis installe une copie de macvdmtool appartenant à root et une règle sudo qui autorise votre compte à lancer uniquement « macvdmtool dfu » sans mot de passe. Rien ne tourne en arrière-plan."
           }
         }
       }
@@ -411,6 +391,16 @@
         }
       }
     },
+    "Disable": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désactiver"
+          }
+        }
+      }
+    },
     "Discard": {
       "localizations": {
         "fr": {
@@ -487,6 +477,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Modèles Apple silicon plus anciens"
+          }
+        }
+      }
+    },
+    "Enable the helper": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activer l’assistant"
           }
         }
       }
@@ -831,6 +831,16 @@
         }
       }
     },
+    "Left by DFU Pulse 0.4 and earlier, no longer used.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laissée par DFU Pulse 0.4 et antérieur, plus utilisée."
+          }
+        }
+      }
+    },
     "Left side: the USB-C port closest to the front.": {
       "localizations": {
         "fr": {
@@ -911,16 +921,6 @@
         }
       }
     },
-    "Needs an update": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mise à jour nécessaire"
-          }
-        }
-      }
-    },
     "No IPSW yet. Download one below or drop files here.": {
       "localizations": {
         "fr": {
@@ -981,6 +981,26 @@
         }
       }
     },
+    "Not enough free space: Apple Configurator unpacks the image before installing it. Free up %@ on this Mac.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espace libre insuffisant : Apple Configurator décompresse l’image avant de l’installer. Libérez %@ sur ce Mac."
+          }
+        }
+      }
+    },
+    "Old sudo rule": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ancienne règle sudo"
+          }
+        }
+      }
+    },
     "On the front, the USB-C port closest to the power button.": {
       "localizations": {
         "fr": {
@@ -1027,6 +1047,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Un seul port USB-C accepte le DFU, et il dépend du Mac."
+          }
+        }
+      }
+    },
+    "Open System Settings": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir Réglages Système"
           }
         }
       }
@@ -1391,6 +1421,26 @@
         }
       }
     },
+    "The helper did not answer.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’assistant n’a pas répondu."
+          }
+        }
+      }
+    },
+    "The helper is a small part of DFU Pulse that macOS starts with administrator rights when needed. It only answers DFU Pulse and only puts a Mac into DFU. You switch it on once in System Settings › General › Login Items & Extensions.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’assistant est une petite partie de DFU Pulse que macOS lance avec les droits administrateur quand il le faut. Il ne répond qu’à DFU Pulse et ne fait que passer un Mac en DFU. Vous l’activez une fois dans Réglages Système › Général › Ouverture et extensions."
+          }
+        }
+      }
+    },
     "Then use “Enter DFU automatically” for a Mac, or the button sequence from the guide. The device shows up in Flash as soon as it is in DFU mode.": {
       "localizations": {
         "fr": {
@@ -1401,22 +1451,12 @@
         }
       }
     },
-    "This installs a copy of macvdmtool owned by root and a sudo rule that lets your account run only “macvdmtool dfu”. Nothing runs in the background, and you can remove it in Settings.": {
+    "To put the other Mac into DFU for you, DFU Pulse needs administrator rights. Switch its helper on once, and no password will be asked again for this.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cela installe une copie de macvdmtool appartenant à root et une règle sudo qui autorise votre compte à lancer uniquement « macvdmtool dfu ». Rien ne tourne en arrière-plan, et vous pouvez tout retirer dans les Réglages."
-          }
-        }
-      }
-    },
-    "To put the other Mac into DFU for you, DFU Pulse needs administrator rights. Enter your password once now, and it will never be asked again for this.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pour mettre l’autre Mac en DFU à votre place, DFU Pulse a besoin des droits administrateur. Saisissez votre mot de passe une seule fois maintenant, il ne sera plus jamais demandé pour cela."
+            "value": "Pour passer l’autre Mac en DFU à votre place, DFU Pulse a besoin des droits administrateur. Activez son assistant une fois, et aucun mot de passe ne sera plus demandé pour cela."
           }
         }
       }
@@ -1431,32 +1471,22 @@
         }
       }
     },
+    "Turn on DFU Pulse under “Allow in the Background”, then come back here.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activez DFU Pulse sous « Autoriser en arrière-plan », puis revenez ici."
+          }
+        }
+      }
+    },
     "Unplug the Mac from power, then press and hold its power button.": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Débranchez le Mac du secteur, puis maintenez son bouton d’alimentation."
-          }
-        }
-      }
-    },
-    "Unsupported account name.": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nom de compte non pris en charge."
-          }
-        }
-      }
-    },
-    "Update": {
-      "localizations": {
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mettre à jour"
           }
         }
       }
@@ -1517,6 +1547,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "En attente d’un appareil en mode DFU"
+          }
+        }
+      }
+    },
+    "Waiting for approval in System Settings": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En attente d’autorisation dans Réglages Système"
           }
         }
       }
@@ -1617,6 +1657,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Les iPhone et iPad n’ont pas de port DFU : branchez n’importe quel câble de données sur ce Mac. Ils passent en DFU uniquement avec leurs boutons."
+          }
+        }
+      }
+    },
+    "macOS lists the helper in System Settings › General › Login Items & Extensions. It only answers DFU Pulse, only puts a Mac into DFU, and you can switch it off there or in Settings.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS affiche l’assistant dans Réglages Système › Général › Ouverture et extensions. Il ne répond qu’à DFU Pulse, ne fait que passer un Mac en DFU, et vous pouvez le désactiver là-bas ou dans les Réglages."
           }
         }
       }

@@ -1,9 +1,11 @@
 import AppKit
+import ServiceManagement
 import SwiftUI
 
 struct SettingsView: View {
     @Environment(AppModel.self) private var model
     @State private var access = DFUEntry.access
+    @State private var hasLegacySetup = DFUEntry.hasLegacySetup
     @State private var working = false
     @State private var errorMessage: String?
 
@@ -12,32 +14,42 @@ struct SettingsView: View {
             Section {
                 LabeledContent("Status") {
                     switch access {
-                    case .passwordless: Text("No password needed")
-                    case .outdated: Text("Needs an update").foregroundStyle(.orange)
+                    case .helper: Text("No password needed")
+                    case .needsApproval: Text("Waiting for approval in System Settings").foregroundStyle(.orange)
                     case .askEveryTime: Text("Asks for a password")
                     }
                 }
                 HStack {
                     Spacer()
                     if working { ProgressView().controlSize(.small) }
-                    if access != .askEveryTime {
-                        Button("Remove") { change(DFUEntry.removePasswordless) }
-                    }
-                    if access != .passwordless {
-                        Button(access == .outdated ? "Update" : "Allow without password") {
-                            change(DFUEntry.installPasswordless)
-                        }
-                        .buttonStyle(.glassProminent)
+                    switch access {
+                    case .helper:
+                        Button("Disable") { change(DFUEntry.disableHelper) }
+                    case .needsApproval:
+                        Button("Open System Settings") { SMAppService.openSystemSettingsLoginItems() }
+                            .buttonStyle(.glassProminent)
+                    case .askEveryTime:
+                        Button("Enable the helper") { change { try DFUEntry.enableHelper() } }
+                            .buttonStyle(.glassProminent)
                     }
                 }
                 .disabled(working)
+                if hasLegacySetup {
+                    LabeledContent {
+                        Button("Remove") { change(DFUEntry.removeLegacySetup) }
+                            .disabled(working)
+                    } label: {
+                        Text("Old sudo rule")
+                        Text("Left by DFU Pulse 0.4 and earlier, no longer used.")
+                    }
+                }
                 if let errorMessage {
                     Text(errorMessage).foregroundStyle(.orange)
                 }
             } header: {
                 Text("Automatic DFU entry")
             } footer: {
-                Text("Asks for your administrator password once, then installs a copy of macvdmtool owned by root and a sudo rule that lets your account run only “macvdmtool dfu” without a password. Nothing runs in the background.")
+                Text("The helper is a small part of DFU Pulse that macOS starts with administrator rights when needed. It only answers DFU Pulse and only puts a Mac into DFU. You switch it on once in System Settings › General › Login Items & Extensions.")
                     .foregroundStyle(.secondary)
             }
 
@@ -53,6 +65,14 @@ struct SettingsView: View {
         .formStyle(.grouped)
         .frame(width: 520)
         .fixedSize(horizontal: false, vertical: true)
+        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
+            refresh()
+        }
+    }
+
+    private func refresh() {
+        access = DFUEntry.access
+        hasLegacySetup = DFUEntry.hasLegacySetup
     }
 
     private func change(_ action: @escaping () async throws -> Void) {
@@ -61,7 +81,7 @@ struct SettingsView: View {
         Task {
             defer {
                 working = false
-                access = DFUEntry.access
+                refresh()
             }
             do {
                 try await action()

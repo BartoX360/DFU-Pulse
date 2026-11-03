@@ -1,0 +1,17 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      # No signing certificate on the runner: build ad-hoc for the tests.
+      - name: Test
+        run: >
+          xcodebuild -project DFUPulse.xcodeproj -scheme DFUPulse test
+          CODE_SIGN_IDENTITY=- DEVELOPMENT_TEAM= ENABLE_HARDENED_RUNTIME=NO
