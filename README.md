@@ -41,7 +41,7 @@ xcodegen generate
 open DFUPulse.xcodeproj
 ```
 
-`scripts/package.sh` builds a DMG signed with the Developer ID certificate and has it notarized; `--publish` also creates the GitHub release. GitHub Actions runs the tests on each push.
+`scripts/package.sh` builds a DMG signed with the Developer ID certificate and has it notarized; `--publish` also creates the GitHub release. On GitHub, every new version number pushed to `main` is released this way automatically (secrets `DEVELOPER_ID_P12`, `DEVELOPER_ID_P12_PASSWORD`, `NOTARY_APPLE_ID`, `NOTARY_PASSWORD`).
 
 ## License
 
