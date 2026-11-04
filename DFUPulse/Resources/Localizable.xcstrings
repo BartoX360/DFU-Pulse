@@ -251,6 +251,36 @@
         }
       }
     },
+    "Check Now": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher maintenant"
+          }
+        }
+      }
+    },
+    "Check for Updates…": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher les mises à jour…"
+          }
+        }
+      }
+    },
+    "Check for updates automatically": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher les mises à jour automatiquement"
+          }
+        }
+      }
+    },
     "Checksum mismatch: the file was deleted.": {
       "localizations": {
         "fr": {
@@ -447,6 +477,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Télécharger"
+          }
+        }
+      }
+    },
+    "Download and install updates automatically": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Télécharger et installer les mises à jour automatiquement"
           }
         }
       }
@@ -1491,6 +1531,26 @@
         }
       }
     },
+    "Updates": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mises à jour"
+          }
+        }
+      }
+    },
+    "Updates come from the project's GitHub releases. They are signed and notarized, and installed when DFU Pulse quits.": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les mises à jour viennent des versions publiées du projet sur GitHub. Elles sont signées et notarisées, et s’installent quand DFU Pulse se ferme."
+          }
+        }
+      }
+    },
     "Updates the firmware and recoveryOS and keeps the Mac's data. Try this first.": {
       "localizations": {
         "fr": {
@@ -1537,6 +1597,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Version"
+          }
+        }
+      }
+    },
+    "Version %@": {
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version %@"
           }
         }
       }

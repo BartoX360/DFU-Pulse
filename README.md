@@ -24,6 +24,7 @@ When a Mac no longer starts, or its firmware is broken, the fix is to connect it
 - **No password every time.** An optional helper, switched on once, lets the automatic entry run without asking for an administrator password.
 - **Library.** Every macOS version Apple still signs, as one universal image per version, with the list of Macs it supports. Signed iOS and iPadOS images, model by model. Downloads resume after an interruption, are checked against their SHA-256 checksum, and stay on your Mac for the next time.
 - **Port guide.** Which USB-C port is the DFU port on each Mac, the key sequence to enter DFU by hand, and the button sequence for each iPhone and iPad.
+- **Automatic updates.** New versions are checked against the GitHub releases and installed when the app quits, signed and notarized. Turn it off or check by hand in **Settings**.
 - **Safety checks.** Asks before erasing anything, and refuses to start a restore when the disk is too full to unpack the image.
 
 ## Requirements
@@ -39,6 +40,8 @@ When a Mac no longer starts, or its firmware is broken, the fix is to connect it
 2. Open it and drag **DFU Pulse** to **Applications**.
 
 The app is signed with a Developer ID and notarized by Apple: it opens like any other app.
+
+DFU Pulse then keeps itself up to date.
 
 On first launch, a short welcome walks you through installing Apple Configurator and, if you want it, enabling the helper. You can open it again from **Help → Welcome to DFU Pulse**.
 
@@ -80,12 +83,13 @@ open DFUPulse.xcodeproj
 
 The project is signed with the maintainer's team. To build your own copy, set `DEVELOPMENT_TEAM` and the team ID in `Shared/HelperProtocol.swift` to yours, since the app and its helper check each other's signature.
 
-Releases are automatic: every new version number pushed to `main` is tested, signed, notarized and published by GitHub Actions through `scripts/package.sh --publish`.
+Releases are automatic: every new version number pushed to `main` is tested, signed, notarized and published by GitHub Actions through `scripts/package.sh --publish`, along with the `appcast.xml` that [Sparkle](https://sparkle-project.org) reads to update the app. Updates are signed with an EdDSA key whose public half is in `Config/Info.plist`.
 
 ## Credits
 
 - [macvdmtool](https://github.com/AsahiLinux/macvdmtool) by the Asahi Linux contributors (Apache-2.0), bundled in `Vendor/`, sends the USB-C command that puts a Mac into DFU.
 - [ipsw.me](https://ipsw.me) for the firmware catalog.
+- [Sparkle](https://sparkle-project.org) (MIT) for updates.
 
 ## License
 

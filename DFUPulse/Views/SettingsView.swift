@@ -53,6 +53,23 @@ struct SettingsView: View {
                     .foregroundStyle(.secondary)
             }
 
+            Section {
+                @Bindable var updates = model.updates
+                Toggle("Check for updates automatically", isOn: $updates.automaticChecks)
+                Toggle("Download and install updates automatically", isOn: $updates.automaticInstalls)
+                    .disabled(!updates.automaticChecks)
+                LabeledContent {
+                    Button("Check Now") { updates.check() }
+                } label: {
+                    Text("Version \(Updates.version)")
+                }
+            } header: {
+                Text("Updates")
+            } footer: {
+                Text("Updates come from the project's GitHub releases. They are signed and notarized, and installed when DFU Pulse quits.")
+                    .foregroundStyle(.secondary)
+            }
+
             Section("IPSW folder") {
                 LabeledContent {
                     Button("Change…") { chooseFolder() }

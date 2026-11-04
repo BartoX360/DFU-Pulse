@@ -17,8 +17,10 @@
 		2EBF7950EC66EE1266C255B3 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A6EDDF870CF96D0808A262 /* Components.swift */; };
 		31B27CE83A658EDCF770A940 /* FlashControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB529FE85F6B571DEA1CECF1 /* FlashControllerTests.swift */; };
 		34A73F1EFA2E2466D63BF259 /* HelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B37B40D15DAC637975DA65 /* HelperProtocol.swift */; };
+		38558DB27E0A4C38DE7A538F /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = C4D9408CF38BC4934CF5BC67 /* Sparkle */; };
 		39F5317C08BFDA07DAFC3EB9 /* HelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B37B40D15DAC637975DA65 /* HelperProtocol.swift */; };
 		4AACE0D5E1ED4F5C5DBEBC63 /* IPSWLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D93FA458603412EBC8F2D1 /* IPSWLibrary.swift */; };
+		4ACE1889332774B13AE2578E /* Updates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18566A6A8DCDD52328E1A7A5 /* Updates.swift */; };
 		61BE2C85A2AB136E8847BB77 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81466E15DC7C594177B8F311 /* Models.swift */; };
 		8367B7D879BC9E8763278FBD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7609869635F6E5755BCBC9E /* SettingsView.swift */; };
 		9456E542C27815597A65F3C7 /* DFUPulseHelper in Embed Dependencies */ = {isa = PBXBuildFile; fileRef = EED90D7CC365E9FEEEE83D74 /* DFUPulseHelper */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -90,6 +92,7 @@
 		01824171BDFDAFEC6DB69FE2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0445D87934463A8EE60E1D66 /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		08E0ED5F1BDEF9F752EE6FB1 /* DFUPulseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFUPulseApp.swift; sourceTree = "<group>"; };
+		18566A6A8DCDD52328E1A7A5 /* Updates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updates.swift; sourceTree = "<group>"; };
 		1E8A8BB7A9A612B6E5C71AF8 /* DFUEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFUEntry.swift; sourceTree = "<group>"; };
 		2251982D0D7BEE9EB37A2D31 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
 		3A316FFAFC0C1C97CF38BD94 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -119,6 +122,17 @@
 		F7473D2F9BEEA157F2AAC4CC /* fr.bartox.DFUPulse.helper.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = fr.bartox.DFUPulse.helper.plist; sourceTree = "<group>"; };
 		F7A6EDDF870CF96D0808A262 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AF293E1CE86D48D5F4541B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38558DB27E0A4C38DE7A538F /* Sparkle in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		033B359D9EDE64FD2AFCC252 /* Helper */ = {
@@ -171,6 +185,7 @@
 				D2066FBBBBF93F4D4244B1F7 /* DownloadManager.swift */,
 				A7949E1EEF20F8290705B48C /* FlashController.swift */,
 				B4D93FA458603412EBC8F2D1 /* IPSWLibrary.swift */,
+				18566A6A8DCDD52328E1A7A5 /* Updates.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -292,6 +307,7 @@
 				493198C0559A9C735DD65C86 /* Sources */,
 				23EF8577961F1042F92A9EDB /* Resources */,
 				09E84CFFED944C6F6E0FFDE9 /* CopyFiles */,
+				AF293E1CE86D48D5F4541B5E /* Frameworks */,
 				0E5ECFEC199AE6DEAC3A64D1 /* Embed Dependencies */,
 			);
 			buildRules = (
@@ -302,6 +318,7 @@
 			);
 			name = DFUPulse;
 			packageProductDependencies = (
+				C4D9408CF38BC4934CF5BC67 /* Sparkle */,
 			);
 			productName = DFUPulse;
 			productReference = 3D030D0BDEA5FF1DC3D625D1 /* DFUPulse.app */;
@@ -361,6 +378,9 @@
 			);
 			mainGroup = 0888F71E6766FF928ABFCB6B;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5C2FEBDAA697DBBFE966F4CD /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B6D254AFC12B8AB4C9EEA771 /* Products */;
 			projectDirPath = "";
@@ -418,6 +438,7 @@
 				C7A0ED64D40892302117DC19 /* OnboardingView.swift in Sources */,
 				A80F13C55C3E7AE8615D0C54 /* PortGuide.swift in Sources */,
 				8367B7D879BC9E8763278FBD /* SettingsView.swift in Sources */,
+				4ACE1889332774B13AE2578E /* Updates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,7 +517,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 6LKS98VG4F;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -517,7 +538,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 0.5.3;
+				MARKETING_VERSION = 0.6.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -567,7 +588,7 @@
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6LKS98VG4F;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -582,7 +603,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 0.5.3;
+				MARKETING_VERSION = 0.6.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_CODE_SIGN_FLAGS = "--timestamp";
@@ -643,6 +664,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Config/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "DFU Pulse";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Free software under GPL-3.0";
@@ -664,6 +686,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Config/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "DFU Pulse";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Free software under GPL-3.0";
@@ -787,6 +810,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5C2FEBDAA697DBBFE966F4CD /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = exactVersion;
+				version = 2.10.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C4D9408CF38BC4934CF5BC67 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C2FEBDAA697DBBFE966F4CD /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F4FABCE7696111BF2EFCC5FD /* Project object */;
 }

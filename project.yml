@@ -4,12 +4,16 @@ options:
   deploymentTarget:
     macOS: "26.0"
   developmentLanguage: en
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    exactVersion: 2.10.1
 settings:
   base:
     SWIFT_VERSION: "6.0"
     ARCHS: arm64
-    MARKETING_VERSION: "0.5.3"
-    CURRENT_PROJECT_VERSION: "10"
+    MARKETING_VERSION: "0.6.0"
+    CURRENT_PROJECT_VERSION: "11"
     CODE_SIGN_STYLE: Manual
     DEVELOPMENT_TEAM: 6LKS98VG4F
     CODE_SIGN_IDENTITY: "Apple Development"
@@ -41,11 +45,13 @@ targets:
         embed: true
         copy:
           destination: executables
+      - package: Sparkle
     settings:
       base:
         PRODUCT_NAME: DFU Pulse
         PRODUCT_BUNDLE_IDENTIFIER: fr.bartox.DFUPulse
         GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_FILE: Config/Info.plist
         INFOPLIST_KEY_CFBundleDisplayName: DFU Pulse
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
         INFOPLIST_KEY_NSHumanReadableCopyright: "Free software under GPL-3.0"

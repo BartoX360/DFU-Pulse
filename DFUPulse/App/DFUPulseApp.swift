@@ -8,6 +8,7 @@ final class AppModel {
     let downloads: DownloadManager
     let monitor = DeviceMonitor()
     let flash = FlashController()
+    let updates = Updates()
 
     init() {
         let library = IPSWLibrary()
@@ -43,6 +44,9 @@ struct DFUPulseApp: App {
                 }
         }
         .commands {
+            CommandGroup(after: .appInfo) {
+                Button("Check for Updates…") { model.updates.check() }
+            }
             CommandGroup(before: .help) {
                 Button("Welcome to DFU Pulse") { onboardingDone = false }
             }

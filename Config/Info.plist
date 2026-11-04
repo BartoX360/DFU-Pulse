@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Sparkle: the feed is attached to every GitHub release, and updates
+	     must be signed with the EdDSA key matching SUPublicEDKey. -->
+	<key>SUFeedURL</key>
+	<string>https://github.com/BartoX360/DFU-Pulse/releases/latest/download/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>mCkD5EpoLjX2rWaAiZ5It3CwE1Kt88m+3BCK9iPgdsc=</string>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUAutomaticallyUpdate</key>
+	<true/>
+</dict>
+</plist>
