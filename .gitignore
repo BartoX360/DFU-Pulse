@@ -4,3 +4,9 @@ DerivedData/
 *.xcuserstate
 xcuserdata/
 *.dmg
+*.ipsw
+*.p12
+*.p8
+*.cer
+*.pem
+.env
