@@ -21,12 +21,12 @@
         }
       }
     },
-    "14-inch M4 or M5 (not Pro or Max)": {
+    "14-inch M4, M5 or M6 (not Pro or Max)": {
       "localizations": {
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "14 pouces M4 ou M5 (hors Pro et Max)"
+            "value": "14 pouces M4, M5 ou M6 (hors Pro et Max)"
           }
         }
       }

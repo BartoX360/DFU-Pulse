@@ -31,7 +31,7 @@ extension PortFamily {
               symbol: "macbook", kind: .laptop, position: .first, ports: 2),
         .init(id: "mba-t2", product: "MacBook Air", detail: "Intel with T2 chip",
               symbol: "macbook", kind: .laptopT2, position: .last, ports: 2),
-        .init(id: "mbp-base", product: "MacBook Pro", detail: "14-inch M4 or M5 (not Pro or Max)",
+        .init(id: "mbp-base", product: "MacBook Pro", detail: "14-inch M4, M5 or M6 (not Pro or Max)",
               symbol: "macbook", kind: .laptop, position: .last, ports: 2),
         .init(id: "mbp-as", product: "MacBook Pro", detail: "Other Apple silicon models",
               symbol: "macbook", kind: .laptop, position: .first, ports: 2),
