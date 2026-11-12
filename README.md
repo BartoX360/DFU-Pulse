@@ -83,7 +83,7 @@ open DFUPulse.xcodeproj
 
 The project is signed with the maintainer's team. To build your own copy, set `DEVELOPMENT_TEAM` and the team ID in `Shared/HelperProtocol.swift` to yours, since the app and its helper check each other's signature.
 
-Releases are automatic: every new version number pushed to `main` is tested, signed, notarized and published by GitHub Actions through `scripts/package.sh --publish`, along with the `appcast.xml` that [Sparkle](https://sparkle-project.org) reads to update the app. Updates are signed with an EdDSA key whose public half is in `Config/Info.plist`.
+Releases are automatic: every new version number pushed to `main` is tested, signed, notarized and published by GitHub Actions through `scripts/package.sh --publish`, along with the `appcast.xml` that [Sparkle](https://sparkle-project.org) reads to update the app. Updates are signed with an EdDSA key whose public half is in `Config/Info.plist`. Release notes come from [`CHANGELOG.md`](CHANGELOG.md): add an entry for each new version.
 
 ## Credits
 

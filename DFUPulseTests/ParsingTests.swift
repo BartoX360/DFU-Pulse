@@ -24,6 +24,13 @@ import Testing
         #expect(Set(names.keys) == ["iPhone18,3", "Mac16,10"])
     }
 
+    @Test func ordersModelsNewestFirst() {
+        #expect(CatalogService.newestFirst(["iPad7,11", "iPad11,6", "iPad16,1", "iPad2,5", "iPad11,7"]) == ["iPad16,1", "iPad11,7", "iPad11,6", "iPad7,11", "iPad2,5"])
+        #expect(CatalogService.family(of: "iPad mini (A17 Pro, WiFi)") == "iPad mini")
+        #expect(CatalogService.family(of: "iPad 8 (WiFi)") == "iPad")
+        #expect(CatalogService.family(of: "iPad (A16, WiFi)") == "iPad")
+    }
+
     @Test func onlyTrustsAppleHosts() {
         #expect(TrustedSource.isApple(URL(string: "https://updates.cdn-apple.com/a.ipsw")!))
         #expect(TrustedSource.isApple(URL(string: "https://swcdn.apple.com/a.ipsw")!))

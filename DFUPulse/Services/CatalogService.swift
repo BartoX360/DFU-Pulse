@@ -68,11 +68,24 @@ final class CatalogService {
         return releases.first { $0.fileName == item.name } ?? releases.first { $0.build == item.build }
     }
 
-    /// iPhone or iPad models, sorted by name.
+    /// iPhone or iPad models, newest first. Names follow no common scheme
+    /// ("iPad 8", "iPad (A16)", "iPhone XS"), so they are ordered by identifier.
     func models(of kind: DeviceKind) -> [String] {
-        names.keys.filter { DeviceKind(prefixOf: $0) == kind }
-            .sorted { displayName(for: $0).localizedStandardCompare(displayName(for: $1)) == .orderedDescending }
+        Self.newestFirst(names.keys.filter { DeviceKind(prefixOf: $0) == kind })
     }
+
+    /// "iPad11,6" sorts as [11, 6].
+    nonisolated static func newestFirst(_ models: [String]) -> [String] {
+        func generation(_ model: String) -> [Int] { model.split { !$0.isNumber }.compactMap { Int($0) } }
+        return models.sorted { generation($1).lexicographicallyPrecedes(generation($0)) }
+    }
+
+    /// The iPad line a model belongs to, used to group the model list.
+    nonisolated static func family(of name: String) -> String {
+        ["iPad Pro", "iPad Air", "iPad mini"].first { name.hasPrefix($0) } ?? "iPad"
+    }
+
+    nonisolated static let iPadFamilies = ["iPad Pro", "iPad Air", "iPad", "iPad mini"]
 
     func displayName(for model: String) -> String {
         names[model] ?? model

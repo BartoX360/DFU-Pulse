@@ -76,6 +76,24 @@ else
     SIGNATURE=$("$TOOLS/sign_update" --account fr.bartox.DFUPulse -p "$DMG")
 fi
 BUILD_NUMBER=$(sed -n 's/.*CURRENT_PROJECT_VERSION: "\(.*\)"/\1/p' project.yml)
+
+# Release notes from CHANGELOG.md, this version first: the update window
+# shows the last few, the GitHub release only this one.
+notes() {
+    awk -v v="$VERSION" -v n="$1" '
+        /^## / { if ($2 == v) on = 1; if (on && ++count > n) exit }
+        on && NF' CHANGELOG.md
+}
+NOTES_HTML=$(notes 5 | sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' -e 's/>/\&gt;/g' | awk '
+    /^## / { if (open) print "</ul>"; print "<h3>" $2 "</h3><ul>"; open = 1; next }
+    /^- / { sub(/^- /, ""); print "<li>" $0 "</li>" }
+    END { if (open) print "</ul>" }')
+if [ -z "$NOTES_HTML" ]; then
+    echo "warning: no entry for $VERSION in CHANGELOG.md, the update window will show no notes" >&2
+    DESCRIPTION=""
+else
+    DESCRIPTION="<description><![CDATA[$NOTES_HTML]]></description>"
+fi
 PAGE="https://github.com/BartoX360/DFU-Pulse/releases/tag/v$VERSION"
 cat > build/appcast.xml <<XML
 <?xml version="1.0" encoding="utf-8"?>
@@ -88,6 +106,7 @@ cat > build/appcast.xml <<XML
       <sparkle:version>$BUILD_NUMBER</sparkle:version>
       <sparkle:shortVersionString>$VERSION</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+      $DESCRIPTION
       <sparkle:fullReleaseNotesLink>$PAGE</sparkle:fullReleaseNotesLink>
       <enclosure url="https://github.com/BartoX360/DFU-Pulse/releases/download/v$VERSION/DFU-Pulse-$VERSION.dmg"
                  length="$(stat -f %z "$DMG")" type="application/octet-stream"
@@ -98,5 +117,7 @@ cat > build/appcast.xml <<XML
 XML
 
 if [ "${1:-}" = "--publish" ]; then
-    gh release create "v$VERSION" "$DMG" build/appcast.xml --title "DFU Pulse $VERSION" --generate-notes
+    NOTES=$(notes 1 | sed 1d)
+    if [ -n "$NOTES" ]; then set -- --notes "$NOTES"; else set -- --generate-notes; fi
+    gh release create "v$VERSION" "$DMG" build/appcast.xml --title "DFU Pulse $VERSION" "$@"
 fi

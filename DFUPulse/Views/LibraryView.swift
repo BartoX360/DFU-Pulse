@@ -128,8 +128,14 @@ struct LibraryView: View {
         let selected = mobileModel.flatMap { models.contains($0) ? $0 : nil } ?? models.first
         Section {
             Picker("Model", selection: Binding(get: { selected }, set: { mobileModel = $0 })) {
-                ForEach(models, id: \.self) { id in
-                    Text(verbatim: model.catalog.displayName(for: id)).tag(Optional(id))
+                if platform == .iPad {
+                    ForEach(CatalogService.iPadFamilies, id: \.self) { family in
+                        Section(family) {
+                            modelOptions(models.filter { CatalogService.family(of: model.catalog.displayName(for: $0)) == family })
+                        }
+                    }
+                } else {
+                    modelOptions(models)
                 }
             }
             if let selected {
@@ -156,6 +162,12 @@ struct LibraryView: View {
         }
         .task(id: selected) {
             if let selected { await model.catalog.loadReleases(for: selected) }
+        }
+    }
+
+    private func modelOptions(_ ids: [String]) -> some View {
+        ForEach(ids, id: \.self) { id in
+            Text(verbatim: model.catalog.displayName(for: id)).tag(Optional(id))
         }
     }
 
